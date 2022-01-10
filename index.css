@@ -1,0 +1,16 @@
+.grid {
+    height: 90vh;
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.cell {
+    font-size: 3rem;
+    text-align: center;
+    padding: 4rem;
+    border-style: solid;
+    height:0;
+    width:20%;
+    padding-bottom:20%;
+}
