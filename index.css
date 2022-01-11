@@ -6,4 +6,12 @@
     border: 1px solid rgb(0, 0, 0);
     width: 25px;
     height: 25px;
-  }
+}
+
+.floor {
+    background-color: rgb(92, 135, 184);
+}
+
+.wall {
+    background-color: rgb(214, 89, 89);
+}
