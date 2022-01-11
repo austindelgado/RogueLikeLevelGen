@@ -16,7 +16,6 @@ for (let y = 0; y < height; y++)
         let id = y * width + x;
         let cell = document.createElement('td');
         cell.id = id;
-        cell.addEventListener('click', () => {cell.classList.add("floor")})
 
         row.appendChild(cell);
     }
