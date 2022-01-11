@@ -1,10 +1,6 @@
 // Find a way to handle dynamic resizing
-let height = Math.floor((document.body.scrollHeight) / 28);
-let width = Math.floor(document.body.scrollWidth / 25);
-
-let test = document.body.scrollHeight;
-
-console.log(`height: ${height}, width: ${width}`);
+let height = Math.floor((document.documentElement.scrollHeight));
+let width = Math.floor(document.documentElement.scrollWidth);
 
 const grid = document.getElementById('grid');
 
@@ -18,9 +14,15 @@ for (let x = 0; x < height; x++)
     for (let y = 0; y < width; y++)
     {
         // New col in row
-        currentHTMLRow += `<td></td>`;
+        let id = x*width + y;
+        currentHTMLRow += `<td id=${id} >${id}</td>`;
     }
     tableHTML += `${currentHTMLRow}</tr>`;
 }
 
 grid.innerHTML = tableHTML;
+
+for (let i = 0; i < width; i++)
+{
+
+}
