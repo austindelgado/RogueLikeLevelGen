@@ -26,6 +26,11 @@ for (let y = 0; y < height; y++)
 }
 
 // Please organize and clean up all X and Y
+function Walker(x, y) {
+    this.posX = x;
+    this.posY = y;
+}
+
 
 // Walker variables
 let posY = Math.round(height / 2);
