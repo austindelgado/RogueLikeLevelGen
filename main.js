@@ -26,56 +26,60 @@ for (let y = 0; y < height; y++)
 }
 
 // Please organize and clean up all X and Y
-function Walker(x, y) {
+function Walker(x, y, dir) {
     this.posX = x;
     this.posY = y;
+    this.dir = dir;
 }
 
-
 // Walker variables
-let posY = Math.round(height / 2);
-let posX = Math.round(width / 2);
-const numWalkers = 1;
-let dir = 1; // Direction test, should make a walker object
+let startingY = Math.round(height / 2);
+let startingX = Math.round(width / 2);
+const numWalkers = 5;
 const chanceWalkerTurn = .25;
 
 for (let i = 0; i < numWalkers; i++)
 {
     // Starting walker pos
-    cellArray[posY][posX].classList.add("floor");
+    currWalker = new Walker(startingX, startingY, getRandomDir());
+    console.log(currWalker);
+
+    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
 
     // Limit walker to 50 steps
     for (let j = 0; j < 50; j++)
     {
-        if (dir == 0)
+        if (currWalker.dir == 0)
         {
-            posY++
+            currWalker.posY++;
         }
-        else if (dir == 1)
+        else if (currWalker.dir == 1)
         {
-            posX++;
+            currWalker.posX++;
         }
-        else if (dir == 2)
+        else if (currWalker.dir == 2)
         {
-            posY--;
+            currWalker.posY--;
         }
         else // Dir == 3
         {
-            posX--;
+            currWalker.posX--;
         }
 
+        // Need these checks before moving pos
         // Mark move
-        cellArray[posY][posX].classList.add("floor");
+        if (currWalker.posY > 0 && currWalker.posY < height && currWalker.posX > 0 && currWalker.posX < width)
+            cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
 
         // Roll to change
         if (Math.random() < chanceWalkerTurn)
         {
             // Pick new direction
-            dir = getRandomInt(3);
+            currWalker.dir = getRandomDir();
         }
     }
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+function getRandomDir() {
+    return Math.floor(Math.random() * 3);
   }
