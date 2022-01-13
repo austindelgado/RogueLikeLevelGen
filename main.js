@@ -25,6 +25,8 @@ for (let y = 0; y < height; y++)
     grid.appendChild(row);
 }
 
+// Please organize and clean up all X and Y
+
 // Walker variables
 let posY = Math.round(height / 2);
 let posX = Math.round(width / 2);
@@ -59,5 +61,16 @@ for (let i = 0; i < numWalkers; i++)
 
         // Mark move
         cellArray[posY][posX].classList.add("floor");
+
+        // Roll to change
+        if (Math.random() < chanceWalkerTurn)
+        {
+            // Pick new direction
+            dir = getRandomInt(3);
+        }
     }
 }
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
