@@ -24,3 +24,40 @@ for (let y = 0; y < height; y++)
     }
     grid.appendChild(row);
 }
+
+// Walker variables
+let posY = Math.round(height / 2);
+let posX = Math.round(width / 2);
+const numWalkers = 1;
+let dir = 1; // Direction test, should make a walker object
+const chanceWalkerTurn = .25;
+
+for (let i = 0; i < numWalkers; i++)
+{
+    // Starting walker pos
+    cellArray[posY][posX].classList.add("floor");
+
+    // Limit walker to 50 steps
+    for (let j = 0; j < 50; j++)
+    {
+        if (dir == 0)
+        {
+            posY++
+        }
+        else if (dir == 1)
+        {
+            posX++;
+        }
+        else if (dir == 2)
+        {
+            posY--;
+        }
+        else // Dir == 3
+        {
+            posX--;
+        }
+
+        // Mark move
+        cellArray[posY][posX].classList.add("floor");
+    }
+}
