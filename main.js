@@ -81,5 +81,5 @@ for (let i = 0; i < numWalkers; i++)
 }
 
 function getRandomDir() {
-    return Math.floor(Math.random() * 3);
+    return Math.floor(Math.random() * 4);
   }
