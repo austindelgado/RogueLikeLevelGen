@@ -41,56 +41,63 @@ let walkerTurnChance = .25;
 let walkerSpawnChance = .05;
 let walkerDeleteChance = .05;
 let percentToFill = 0.5;
-let floorNum;
+let floorNum = 0;
 
 let walkers = [];
 // Spawn starting walkers
 for (let i = 0; i < startingWalkers; i++)
-    walkers.push(new Walker(startingX, startingY));
+    walkers.push(new Walker(startingX, startingY, getRandomDir()));
 
-while (floorNum / width * height < percentToFill)
+console.log(floorNum / (width * height));
+
+while (floorNum / (width * height) < 0.4)
 {
     //Add floors
-    arrays.foreach ((currWalker) => {
-        if (cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
+    walkers.forEach ((currWalker) => {
+        if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
         {
             cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
             floorNum++;
+            console.log("Adding floor");
         }
     });
 
     // Chance to add walkers
-    arrays.foreach ((currWalker) => {
+    walkers.forEach ((currWalker) => {
         if (Math.random() < walkerSpawnChance)
         {
             walkers.push(new Walker(currWalker.posX, currWalker.posY));
+            console.log("New walker");
             // Maybe limit this?
         }
     });
 
     // Chance to destory walkers
-    arrays.foreach ((currWalker) => {
-        if (Math.random() < walkerDeleteChance)
+    walkers.forEach ((currWalker) => {
+        if (Math.random() < walkerDeleteChance && walkers.length > 1)
         {
-            walkers.splice(walker.indexOf(currWalker));
+            walkers.splice(walkers.indexOf(currWalker, 1));
+            console.log("Deleting walker");
+            console.log(walkers);
         }
     });
 
     // Chance to turn
-    arrays.foreach ((currWalker) => {
+    walkers.forEach ((currWalker) => {
         if (Math.random() < walkerTurnChance)
         {
             currWalker.dir = getRandomDir();
+            console.log("Walker turning");
         }
     });
 
     // Move walkers
-    arrays.foreach ((currWalker) => {
-        if (currWalker.dir == 0 && currWalker.posY + 1 < height)
+    walkers.forEach ((currWalker) => {
+        if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
         {
             currWalker.posY++;
         }
-        else if (currWalker.dir == 1 && currWalker.posX + 1 < width)
+        else if (currWalker.dir == 1 && currWalker.posX + 1 < width - 1)
         {
             currWalker.posX++;
         }
@@ -102,6 +109,7 @@ while (floorNum / width * height < percentToFill)
         {
             currWalker.posX--;
         }
+        console.log("Walker moving");
     });
 }
 
