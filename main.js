@@ -134,6 +134,30 @@ function WallGen()
     }
 }
 
+function ClearLevel()
+{
+    // Remove all tiles
+    for (let y = 0; y < height; y++)
+    {
+        for (let x = 0; x < width; x++)
+        {
+            cellArray[y][x].className = '';
+        }
+    }
+
+    floorNum = 0;
+    walkers = [];
+}
+
+function GenerateNewLevel()
+{
+    ClearLevel();
+    
+    WalkerSetup();
+    FloorGen();
+    WallGen();
+}
+
 function getRandomDir() 
 {
     return Math.floor(Math.random() * 4);
@@ -142,3 +166,6 @@ function getRandomDir()
 WalkerSetup();
 FloorGen();
 WallGen();
+
+// Grab button? Probably a better way to do this
+document.getElementById("generate").onclick = GenerateNewLevel;
