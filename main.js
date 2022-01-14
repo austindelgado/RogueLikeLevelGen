@@ -1,6 +1,6 @@
 // Find a way to handle dynamic resizing
-let height = Math.floor(window.screen.availHeight / 30);
-let width = Math.floor(window.screen.availWidth / 25);
+let height = Math.floor(document.documentElement.scrollHeight / 30);
+let width = Math.floor(document.documentElement.scrollWidth / 25);
 
 const grid = document.getElementById('grid');
 
@@ -44,75 +44,84 @@ let percentToFill = 0.5;
 let floorNum = 0;
 
 let walkers = [];
-// Spawn starting walkers
-for (let i = 0; i < startingWalkers; i++)
-    walkers.push(new Walker(startingX, startingY, getRandomDir()));
 
-console.log(floorNum / (width * height));
-
-while (floorNum / (width * height) < 0.4)
+function WalkerSetup() 
 {
-    //Add floors
-    walkers.forEach ((currWalker) => {
-        if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
-        {
-            cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
-            floorNum++;
-            console.log("Adding floor");
-        }
-    });
-
-    // Chance to add walkers
-    walkers.forEach ((currWalker) => {
-        if (Math.random() < walkerSpawnChance)
-        {
-            walkers.push(new Walker(currWalker.posX, currWalker.posY));
-            console.log("New walker");
-            // Maybe limit this?
-        }
-    });
-
-    // Chance to destory walkers
-    walkers.forEach ((currWalker) => {
-        if (Math.random() < walkerDeleteChance && walkers.length > 1)
-        {
-            walkers.splice(walkers.indexOf(currWalker, 1));
-            console.log("Deleting walker");
-            console.log(walkers);
-        }
-    });
-
-    // Chance to turn
-    walkers.forEach ((currWalker) => {
-        if (Math.random() < walkerTurnChance)
-        {
-            currWalker.dir = getRandomDir();
-            console.log("Walker turning");
-        }
-    });
-
-    // Move walkers
-    walkers.forEach ((currWalker) => {
-        if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
-        {
-            currWalker.posY++;
-        }
-        else if (currWalker.dir == 1 && currWalker.posX + 1 < width - 1)
-        {
-            currWalker.posX++;
-        }
-        else if (currWalker.dir == 2 && currWalker.posY - 1 > 0)
-        {
-            currWalker.posY--;
-        }
-        else if (currWalker.dir == 3 && currWalker.posX - 1 > 0)
-        {
-            currWalker.posX--;
-        }
-        console.log("Walker moving");
-    });
+    // Spawn starting walkers
+    for (let i = 0; i < startingWalkers; i++)
+        walkers.push(new Walker(startingX, startingY, getRandomDir()));
 }
 
-function getRandomDir() {
+function FloorGen()
+{
+    while (floorNum / (width * height) < 0.4)
+    {
+        //Add floors
+        walkers.forEach ((currWalker) => {
+            if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
+            {
+                cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+                floorNum++;
+                console.log("Adding floor");
+            }
+        });
+    
+        // Chance to add walkers
+        walkers.forEach ((currWalker) => {
+            if (Math.random() < walkerSpawnChance)
+            {
+                walkers.push(new Walker(currWalker.posX, currWalker.posY));
+                console.log("New walker");
+                // Maybe limit this?
+            }
+        });
+    
+        // Chance to destory walkers
+        walkers.forEach ((currWalker) => {
+            if (Math.random() < walkerDeleteChance && walkers.length > 1)
+            {
+                walkers.splice(walkers.indexOf(currWalker, 1));
+                console.log("Deleting walker");
+                console.log(walkers);
+            }
+        });
+    
+        // Chance to turn
+        walkers.forEach ((currWalker) => {
+            if (Math.random() < walkerTurnChance)
+            {
+                currWalker.dir = getRandomDir();
+                console.log("Walker turning");
+            }
+        });
+    
+        // Move walkers
+        walkers.forEach ((currWalker) => {
+            if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
+            {
+                currWalker.posY++;
+            }
+            else if (currWalker.dir == 1 && currWalker.posX + 1 < width - 1)
+            {
+                currWalker.posX++;
+            }
+            else if (currWalker.dir == 2 && currWalker.posY - 1 > 0)
+            {
+                currWalker.posY--;
+            }
+            else if (currWalker.dir == 3 && currWalker.posX - 1 > 0)
+            {
+                currWalker.posX--;
+            }
+            console.log("Walker moving");
+        });
+    }
+}
+
+function getRandomDir() 
+{
     return Math.floor(Math.random() * 4);
-  }
+}
+
+WalkerSetup();
+FloorGen();
