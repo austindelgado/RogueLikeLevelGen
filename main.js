@@ -84,9 +84,8 @@ while (floorNum / width * height < percentToFill)
         }
     });
 
-    // Limit walker to 50 steps
-    for (let j = 0; j < 50; j++)
-    {
+    // Move walkers
+    arrays.foreach ((currWalker) => {
         if (currWalker.dir == 0 && currWalker.posY + 1 < height)
         {
             currWalker.posY++;
@@ -103,19 +102,7 @@ while (floorNum / width * height < percentToFill)
         {
             currWalker.posX--;
         }
-
-        // Need these checks before moving pos
-        // Mark move
-        if (currWalker.posY > 0 && currWalker.posY < height && currWalker.posX > 0 && currWalker.posX < width)
-            cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
-
-        // Roll to change
-        if (Math.random() < chanceWalkerTurn)
-        {
-            // Pick new direction
-            currWalker.dir = getRandomDir();
-        }
-    }
+    });
 }
 
 function getRandomDir() {
