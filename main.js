@@ -38,6 +38,7 @@ let startingX = Math.round(width / 2);
 let startingWalkers = 3;
 let maxWalkers = 10;
 let chanceWalkerTurn = .25;
+let walkerSpawnChance = .05;
 let percentToFill = 0.5;
 let floorNum;
 
@@ -58,6 +59,13 @@ while (floorNum / width * height < percentToFill)
     });
 
     // Chance to add walkers
+    arrays.foreach ((currWalker) => {
+        if (Math.random() < walkerSpawnChance)
+        {
+            walkers.push(new Walker(currWalker.posX, currWalker.posY));
+            // Maybe limit this?
+        }
+    });
 
     // Chance to destory walkers
 
