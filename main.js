@@ -40,7 +40,7 @@ let maxWalkers = 10;
 let walkerTurnChance = .25;
 let walkerSpawnChance = .05;
 let walkerDeleteChance = .05;
-let percentToFill = 0.5;
+let percentToFill = 0.25;
 let floorNum = 0;
 
 let walkers = [];
@@ -54,7 +54,7 @@ function WalkerSetup()
 
 function FloorGen()
 {
-    while (floorNum / (width * height) < 0.4)
+    while (floorNum / (width * height) < percentToFill)
     {
         //Add floors
         walkers.forEach ((currWalker) => {
@@ -118,6 +118,22 @@ function FloorGen()
     }
 }
 
+// Potentially change to a flood fill
+function WallGen()
+{
+    for (let y = 0; y < height; y++)
+    {
+        for (let x = 0; x < width; x++)
+        {
+            if (!cellArray[y][x].classList.contains("floor"))
+            {
+                cellArray[y][x].classList.add("wall");
+                console.log("Adding wall");
+            }
+        }
+    }
+}
+
 function getRandomDir() 
 {
     return Math.floor(Math.random() * 4);
@@ -125,3 +141,4 @@ function getRandomDir()
 
 WalkerSetup();
 FloorGen();
+WallGen();
