@@ -39,6 +39,7 @@ let startingWalkers = 3;
 let maxWalkers = 10;
 let chanceWalkerTurn = .25;
 let walkerSpawnChance = .05;
+let walkerDeleteChance = .05;
 let percentToFill = 0.5;
 let floorNum;
 
@@ -68,6 +69,12 @@ while (floorNum / width * height < percentToFill)
     });
 
     // Chance to destory walkers
+    arrays.foreach ((currWalker) => {
+        if (Math.random() < walkerDeleteChance)
+        {
+            walkers.splice(walker.indexOf(currWalker));
+        }
+    });
 
     // Chance to turn
 
