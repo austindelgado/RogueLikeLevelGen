@@ -48,20 +48,7 @@ for (let i = 0; i < startingWalkers; i++)
 
 while (floorNum / width * height < percentToFill)
 {
-    //Add floors
-    arrays.foreach ((currWalker) => {
-        if (cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
-        {
-            cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
-            floorNum++;
-        }
-    });
-
-    // Chance to add walkers
-
-    // Chance to destory walkers
-
-    // Chance to turn
+    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
 
     // Limit walker to 50 steps
     for (let j = 0; j < 50; j++)
