@@ -35,16 +35,33 @@ function Walker(x, y, dir) {
 // Walker variables
 let startingY = Math.round(height / 2);
 let startingX = Math.round(width / 2);
-const numWalkers = 5;
-const chanceWalkerTurn = .25;
+let startingWalkers = 3;
+let maxWalkers = 10;
+let chanceWalkerTurn = .25;
+let percentToFill = 0.5;
+let floorNum;
 
-for (let i = 0; i < numWalkers; i++)
+let walkers = [];
+// Spawn starting walkers
+for (let i = 0; i < startingWalkers; i++)
+    walkers.push(new Walker(startingX, startingY));
+
+while (floorNum / width * height < percentToFill)
 {
-    // Starting walker pos
-    currWalker = new Walker(startingX, startingY, getRandomDir());
-    console.log(currWalker);
+    //Add floors
+    arrays.foreach ((currWalker) => {
+        if (cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
+        {
+            cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+            floorNum++;
+        }
+    });
 
-    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+    // Chance to add walkers
+
+    // Chance to destory walkers
+
+    // Chance to turn
 
     // Limit walker to 50 steps
     for (let j = 0; j < 50; j++)
