@@ -37,7 +37,7 @@ let startingY = Math.round(height / 2);
 let startingX = Math.round(width / 2);
 let startingWalkers = 3;
 let maxWalkers = 10;
-let chanceWalkerTurn = .25;
+let walkerTurnChance = .25;
 let walkerSpawnChance = .05;
 let walkerDeleteChance = .05;
 let percentToFill = 0.5;
@@ -77,6 +77,12 @@ while (floorNum / width * height < percentToFill)
     });
 
     // Chance to turn
+    arrays.foreach ((currWalker) => {
+        if (Math.random() < walkerTurnChance)
+        {
+            currWalker.dir = getRandomDir();
+        }
+    });
 
     // Limit walker to 50 steps
     for (let j = 0; j < 50; j++)
