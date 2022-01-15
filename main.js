@@ -97,19 +97,19 @@ function FloorGen()
     
         // Move walkers
         walkers.forEach ((currWalker) => {
-            if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
+            if (currWalker.dir == 0 && currWalker.posY + 1 < height) 
             {
                 currWalker.posY++;
             }
-            else if (currWalker.dir == 1 && currWalker.posX + 1 < width - 1)
+            else if (currWalker.dir == 1 && currWalker.posX + 1 < width)
             {
                 currWalker.posX++;
             }
-            else if (currWalker.dir == 2 && currWalker.posY - 1 > 0)
+            else if (currWalker.dir == 2 && currWalker.posY - 1 > -1)
             {
                 currWalker.posY--;
             }
-            else if (currWalker.dir == 3 && currWalker.posX - 1 > 0)
+            else if (currWalker.dir == 3 && currWalker.posX - 1 > -1)
             {
                 currWalker.posX--;
             }
