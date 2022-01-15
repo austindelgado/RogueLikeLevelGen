@@ -35,12 +35,12 @@ function Walker(x, y, dir) {
 // Walker variables
 let startingY = Math.round(height / 2);
 let startingX = Math.round(width / 2);
-let startingWalkers = 3;
-let maxWalkers = 10;
-let walkerTurnChance = .25;
-let walkerSpawnChance = .05;
-let walkerDeleteChance = .05;
-let percentToFill = 0.25;
+let startingWalkers;
+let maxWalkers;
+let walkerTurnChance;
+let walkerSpawnChance;
+let walkerDeleteChance;
+let percentToFill;
 let floorNum = 0;
 
 let walkers = [];
@@ -128,7 +128,6 @@ function WallGen()
             if (!cellArray[y][x].classList.contains("floor"))
             {
                 cellArray[y][x].classList.add("wall");
-                console.log("Adding wall");
             }
         }
     }
@@ -149,10 +148,21 @@ function ClearLevel()
     walkers = [];
 }
 
+function GrabValues()
+{
+    startingWalkers = document.getElementById('startWalkers').value;
+    maxWalkers = document.getElementById('maxWalkers').value;
+    walkerTurnChance = document.getElementById('turnChance').value;
+    walkerSpawnChance = document.getElementById('spawnChance').value;
+    walkerDeleteChance = document.getElementById('deleteChance').value;
+    percentToFill = document.getElementById('percentFill').value;
+}
+
 function GenerateNewLevel()
 {
     ClearLevel();
     
+    GrabValues();
     WalkerSetup();
     FloorGen();
     WallGen();
@@ -163,6 +173,7 @@ function getRandomDir()
     return Math.floor(Math.random() * 4);
 }
 
+GrabValues();
 WalkerSetup();
 FloorGen();
 WallGen();
