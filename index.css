@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 #grid {
     border-collapse: collapse;
 }
@@ -14,4 +16,12 @@
 
 .wall {
     background-color: rgb(158, 122, 67);
+}
+
+header {
+    padding: 60px;
+    text-align: center;
+    background: #5daa6e;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
 }
