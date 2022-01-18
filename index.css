@@ -19,9 +19,14 @@
 }
 
 header {
-    padding: 60px;
-    text-align: center;
+    padding: 10px;
+    text-align: left;
     background: #5daa6e;
     color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+input[type="number"]
+{
     font-family: 'Press Start 2P', cursive;
 }
