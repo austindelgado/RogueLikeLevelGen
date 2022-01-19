@@ -1,6 +1,6 @@
 // Find a way to handle dynamic resizing
-let height = 25;
-let width = 25;
+let height = 30;
+let width = 30;
 
 const grid = document.getElementById('grid');
 
@@ -172,9 +172,24 @@ function WallGen()
     {
         for (let x = 0; x < width; x++)
         {
-            if (!cellArray[y][x].classList.contains("floor"))
+            if (cellArray[y][x].classList.contains("floor"))
             {
-                cellArray[y][x].classList.add("wall");
+                if (y + 1 < height && !cellArray[y + 1][x].classList.contains("floor"))
+                {
+                    cellArray[y + 1][x].classList.add("wall");
+                }
+                if (x + 1 < width && !cellArray[y][x + 1].classList.contains("floor"))
+                {
+                    cellArray[y][x + 1].classList.add("wall");
+                }
+                if (y - 1 > -1 && !cellArray[y - 1][x].classList.contains("floor"))
+                {
+                    cellArray[y - 1][x].classList.add("wall");
+                }
+                if (x - 1 > -1 && !cellArray[y][x - 1].classList.contains("floor"))
+                {
+                    cellArray[y][x - 1].classList.add("wall");
+                }
             }
         }
     }
