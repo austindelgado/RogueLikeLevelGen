@@ -37,7 +37,9 @@ let startingY = Math.round(height / 2);
 let startingX = Math.round(width / 2);
 let startingWalkers;
 let maxWalkers;
-let walkerTurnChance;
+let leftTurnChance;
+let rightTurnChance;
+let uTurnChance;
 let walkerSpawnChance;
 let walkerDeleteChance;
 let maxFloor;
@@ -88,11 +90,27 @@ function FloorGen()
     
         // Chance to turn
         walkers.forEach ((currWalker) => {
-            if (Math.random() < walkerTurnChance)
+            const rng = Math.random();
+            if (rng < leftTurnChance)
             {
-                currWalker.dir = getRandomDir();
-                console.log("Walker turning");
+                console.log("Walker left turn");
+                currWalker.dir--;
             }
+            else if (rng < leftTurnChance + rightTurnChance)
+            {
+                console.log("Walker right turn");
+                currWalker.dir++;
+            }
+            else if (rng < leftTurnChance + rightTurnChance + uTurnChance)
+            {
+                console.log("Walker u turn");
+                currWalker.dir += 2;
+            }
+
+            if (currWalker.dir > 3)
+                currWalker.dir -= 4;
+            else if (currWalker.dir < 0)
+                currWalker.dir += 4;
         });
     
         // Move walkers
@@ -152,7 +170,9 @@ function GrabValues()
 {
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
-    walkerTurnChance = document.getElementById('turnChance').value;
+    leftTurnChance = document.getElementById('leftTurnChance').value;
+    rightTurnChance = document.getElementById('rightTurnChance').value;
+    uTurnChance = document.getElementById('uTurnChance').value;
     walkerSpawnChance = document.getElementById('spawnChance').value;
     walkerDeleteChance = document.getElementById('deleteChance').value;
     maxFloor = document.getElementById('maxFloor').value;
