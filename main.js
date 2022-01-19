@@ -40,7 +40,7 @@ let maxWalkers;
 let walkerTurnChance;
 let walkerSpawnChance;
 let walkerDeleteChance;
-let percentToFill;
+let maxFloor;
 let floorNum = 0;
 
 let walkers = [];
@@ -54,7 +54,7 @@ function WalkerSetup()
 
 function FloorGen()
 {
-    while (floorNum / (width * height) < percentToFill)
+    while (floorNum < maxFloor)
     {
         //Add floors
         walkers.forEach ((currWalker) => {
@@ -155,7 +155,10 @@ function GrabValues()
     walkerTurnChance = document.getElementById('turnChance').value;
     walkerSpawnChance = document.getElementById('spawnChance').value;
     walkerDeleteChance = document.getElementById('deleteChance').value;
-    percentToFill = document.getElementById('percentFill').value;
+    maxFloor = document.getElementById('maxFloor').value;
+
+    if (maxFloor > height * width)
+        maxFloor = height * width;
 }
 
 function GenerateNewLevel()
