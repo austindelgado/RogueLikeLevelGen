@@ -1,6 +1,6 @@
 // Find a way to handle dynamic resizing
-let height = Math.floor(document.documentElement.scrollHeight / 30);
-let width = Math.floor(document.documentElement.scrollWidth / 25);
+let height = 50;
+let width = 50;
 
 const grid = document.getElementById('grid');
 
