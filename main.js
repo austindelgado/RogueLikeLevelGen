@@ -1,6 +1,6 @@
 // Find a way to handle dynamic resizing
-let height = 50;
-let width = 50;
+let height = 25;
+let width = 25;
 
 const grid = document.getElementById('grid');
 
@@ -42,6 +42,7 @@ let rightTurnChance;
 let uTurnChance;
 let walkerSpawnChance;
 let walkerDeleteChance;
+let bigRoomChance;
 let maxFloor;
 let floorNum = 0;
 
@@ -62,9 +63,37 @@ function FloorGen()
         walkers.forEach ((currWalker) => {
             if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
             {
-                cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
-                floorNum++;
-                console.log("Adding floor");
+                if (Math.random() < bigRoomChance)
+                {
+                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+                    floorNum++;
+
+                    if (currWalker.posY + 1 < height) 
+                    {
+                        cellArray[currWalker.posY + 1][currWalker.posX].classList.add("floor");
+                        floorNum++;
+                    }
+                    
+                    if (currWalker.posX + 1 < width)
+                    {
+                        cellArray[currWalker.posY][currWalker.posX + 1].classList.add("floor");
+                        floorNum++;
+                    }
+                    
+                    if (currWalker.posX + 1 < width && currWalker.posY + 1 < height)
+                    {
+                        cellArray[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor");
+                        floorNum++;
+                    }
+
+                    console.log("Adding 2x2 floor");
+                }
+                else
+                {
+                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+                    floorNum++;
+                    console.log("Adding floor");
+                }
             }
         });
     
@@ -175,6 +204,7 @@ function GrabValues()
     uTurnChance = document.getElementById('uTurnChance').value;
     walkerSpawnChance = document.getElementById('spawnChance').value;
     walkerDeleteChance = document.getElementById('deleteChance').value;
+    bigRoomChance = document.getElementById('bigRoomChance').value;
     maxFloor = document.getElementById('maxFloor').value;
 
     if (maxFloor > height * width)
