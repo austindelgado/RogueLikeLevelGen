@@ -51,7 +51,7 @@ function WalkerSetup()
 {
     // Spawn starting walkers
     for (let i = 0; i < startingWalkers; i++)
-        walkers.push(new Walker(startingX, startingY, getRandomDir()));
+        walkers.push(new Walker(startingX, startingY, Math.floor(Math.random() * 4)));
 }
 
 function FloorGen()
@@ -189,11 +189,6 @@ function GenerateNewLevel()
     WalkerSetup();
     FloorGen();
     WallGen();
-}
-
-function getRandomDir() 
-{
-    return Math.floor(Math.random() * 4);
 }
 
 GrabValues();
