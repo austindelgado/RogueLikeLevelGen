@@ -58,6 +58,7 @@ function WalkerSetup()
 function FloorGen()
 {
     let chestX, chestY, chestMax = 0;
+    let ammoX, ammoY, ammoMax = 0;
 
     while (floorNum < maxFloor)
     {
@@ -115,7 +116,15 @@ function FloorGen()
             {
                 walkers.splice(walkers.indexOf(currWalker, 1));
                 console.log("Deleting walker");
-                console.log(walkers);
+
+                // Spawn ammo
+                newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
+                if (newAmmo > ammoMax && currWalker.posX != chestX && currWalker.posX != chestY)
+                {
+                    ammoMax = newAmmo;
+                    ammoX = currWalker.posX;
+                    ammoY = currWalker.posY;
+                }
             }
         });
     
@@ -139,8 +148,9 @@ function FloorGen()
                 console.log("Walker u turn");
                 currWalker.dir += 2;
 
+                // Check chest distance on u-turn
                 newChest = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
-                if (newChest > chestMax)
+                if (newChest > chestMax && currWalker.posX != ammoX && currWalker.posX != ammoY)
                 {
                     chestMax = newChest;
                     chestX = currWalker.posX;
@@ -176,9 +186,11 @@ function FloorGen()
         });
     }
 
-    console.log(chestX + ', ' + chestY);
     if (chestX != 0 || chestY != 0)
         SpawnObject(chestX, chestY, 0);
+
+    if (ammoX != 0 || ammoY != 0)
+        SpawnObject(ammoX, ammoY, 1);
 }
 
 function SpawnObject(x, y, obj) 
@@ -188,6 +200,11 @@ function SpawnObject(x, y, obj)
     {
         console.log("Spawning Chest");
         cellArray[y][x].classList.add('chest');
+    }
+    else if (obj == 1)
+    {
+        console.log("Spawning Ammo");
+        cellArray[y][x].classList.add('ammo');
     }
 }
 
