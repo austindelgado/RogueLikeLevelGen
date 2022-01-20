@@ -57,6 +57,8 @@ function WalkerSetup()
 
 function FloorGen()
 {
+    let chestX, chestY, chestMax = 0;
+
     while (floorNum < maxFloor)
     {
         //Add floors
@@ -136,7 +138,14 @@ function FloorGen()
             {
                 console.log("Walker u turn");
                 currWalker.dir += 2;
-                SpawnObject(currWalker.posX, currWalker.posY, 0);
+
+                newChest = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
+                if (newChest > chestMax)
+                {
+                    chestMax = newChest;
+                    chestX = currWalker.posX;
+                    chestY = currWalker.posY;
+                }
             }
 
             if (currWalker.dir > 3)
@@ -166,6 +175,10 @@ function FloorGen()
             console.log("Walker moving");
         });
     }
+
+    console.log(chestX + ', ' + chestY);
+    if (chestX != 0 || chestY != 0)
+        SpawnObject(chestX, chestY, 0);
 }
 
 function SpawnObject(x, y, obj) 
@@ -174,7 +187,7 @@ function SpawnObject(x, y, obj)
     if (obj == 0)
     {
         console.log("Spawning Chest");
-        //cellArray[y][x].innerHTML = 'test';
+        cellArray[y][x].classList.add('chest');
     }
 }
 
@@ -237,6 +250,11 @@ function GrabValues()
 
     if (maxFloor > height * width)
         maxFloor = height * width;
+}
+
+function GetDistance(x1, y1, x2, y2)
+{
+    return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
 }
 
 function GenerateNewLevel()

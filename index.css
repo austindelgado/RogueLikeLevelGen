@@ -21,6 +21,19 @@
     background-color: rgb(158, 122, 67);
 }
 
+.floor.chest {
+    background-color: rgb(172, 30, 30);
+}
+
+.floor.rad {
+    background-color: rgb(45, 170, 33);
+}
+
+.floor.ammo{
+    background-color: rgb(158, 126, 67);
+}
+
+
 header {
     padding: 10px;
     text-align: left;
