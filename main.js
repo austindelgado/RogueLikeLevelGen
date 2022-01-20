@@ -136,6 +136,7 @@ function FloorGen()
             {
                 console.log("Walker u turn");
                 currWalker.dir += 2;
+                SpawnObject(currWalker.posX, currWalker.posY, 0);
             }
 
             if (currWalker.dir > 3)
@@ -164,6 +165,16 @@ function FloorGen()
             }
             console.log("Walker moving");
         });
+    }
+}
+
+function SpawnObject(x, y, obj) 
+{
+    // 0 - Chest
+    if (obj == 0)
+    {
+        console.log("Spawning Chest");
+        //cellArray[y][x].innerHTML = 'test';
     }
 }
 
