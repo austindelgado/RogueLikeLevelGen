@@ -120,17 +120,19 @@ function FloorGen()
         // Chance to turn
         walkers.forEach ((currWalker) => {
             const rng = Math.random();
-            if (rng < leftTurnChance)
+            console.log(rng);
+
+            if (0 < rng < leftTurnChance)
             {
                 console.log("Walker left turn");
                 currWalker.dir--;
             }
-            else if (rng < leftTurnChance + rightTurnChance)
+            else if (leftTurnChance < rng < rightTurnChance + leftTurnChance)
             {
                 console.log("Walker right turn");
                 currWalker.dir++;
             }
-            else if (rng < leftTurnChance + rightTurnChance + uTurnChance)
+            else if (rightTurnChance + leftTurnChance < rng < uTurnChance + leftTurnChance + rightTurnChance)
             {
                 console.log("Walker u turn");
                 currWalker.dir += 2;
@@ -214,12 +216,12 @@ function GrabValues()
 {
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
-    leftTurnChance = document.getElementById('leftTurnChance').value;
-    rightTurnChance = document.getElementById('rightTurnChance').value;
-    uTurnChance = document.getElementById('uTurnChance').value;
-    walkerSpawnChance = document.getElementById('spawnChance').value;
-    walkerDeleteChance = document.getElementById('deleteChance').value;
-    bigRoomChance = document.getElementById('bigRoomChance').value;
+    leftTurnChance = parseFloat(document.getElementById('leftTurnChance').value);
+    rightTurnChance = parseFloat(document.getElementById('rightTurnChance').value);
+    uTurnChance = parseFloat(document.getElementById('uTurnChance').value);
+    walkerSpawnChance = parseFloat(document.getElementById('spawnChance').value);
+    walkerDeleteChance = parseFloat(document.getElementById('deleteChance').value);
+    bigRoomChance = parseFloat(document.getElementById('bigRoomChance').value);
     maxFloor = document.getElementById('maxFloor').value;
 
     if (maxFloor > height * width)
