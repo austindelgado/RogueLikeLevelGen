@@ -57,8 +57,12 @@ function WalkerSetup()
 
 function FloorGen()
 {
-    let chestX, chestY, chestMax = 0;
-    let ammoX, ammoY, ammoMax = 0;
+    let chestX, chestY, chestMax;
+    chestX = chestY = chestMax = 0;
+    let ammoX, ammoY, ammoMax;
+    ammoX = ammoY = ammoMax = 0;
+    let radX, radY, radMax;
+    radX = radY = radMax = 0;
 
     while (floorNum < maxFloor)
     {
@@ -98,6 +102,18 @@ function FloorGen()
                     console.log("Adding floor");
                 }
             }
+
+            if (floorNum / maxFloor > .8)
+            {
+                // Check rad distance on last 10% of floor
+                newRad = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
+                if (newRad > radMax && currWalker.posX != ammoX && currWalker.posX != ammoY && currWalker.posX != chestX && currWalker.posY != chestY)
+                {
+                    radMax = newRad;
+                    radX = currWalker.posX;
+                    radY = currWalker.posY;
+                }
+            }  
         });
     
         // Chance to add walkers
@@ -119,7 +135,7 @@ function FloorGen()
 
                 // Spawn ammo
                 newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
-                if (newAmmo > ammoMax && currWalker.posX != chestX && currWalker.posX != chestY)
+                if (newAmmo > ammoMax && currWalker.posX != chestX && currWalker.posX != chestY && currWalker.posX != radX && currWalker.posY != radY)
                 {
                     ammoMax = newAmmo;
                     ammoX = currWalker.posX;
@@ -150,7 +166,7 @@ function FloorGen()
 
                 // Check chest distance on u-turn
                 newChest = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
-                if (newChest > chestMax && currWalker.posX != ammoX && currWalker.posX != ammoY)
+                if (newChest > chestMax && currWalker.posX != ammoX && currWalker.posX != ammoY && currWalker.posX != radX && currWalker.posY != radY)
                 {
                     chestMax = newChest;
                     chestX = currWalker.posX;
@@ -191,10 +207,14 @@ function FloorGen()
 
     if (ammoX != 0 || ammoY != 0)
         SpawnObject(ammoX, ammoY, 1);
+
+    if (radX != 0 || radY != 0)
+        SpawnObject(radX, radY, 2);
 }
 
 function SpawnObject(x, y, obj) 
 {
+    console.log(`${x}, ${y}`);
     // 0 - Chest
     if (obj == 0)
     {
@@ -205,6 +225,11 @@ function SpawnObject(x, y, obj)
     {
         console.log("Spawning Ammo");
         cellArray[y][x].classList.add('ammo');
+    }
+    else if (obj == 2)
+    {
+        console.log("Spawning Rad");
+        cellArray[y][x].classList.add('rad');
     }
 }
 
