@@ -315,6 +315,25 @@ function GenerateNewLevel()
     WallGen();
 }
 
+let activeDrop;
+
+function Dropdown(obj) 
+{  
+    document.getElementById(obj).classList.toggle("show");
+
+    if (activeDrop == undefined)
+        activeDrop = obj;
+    else if (activeDrop == obj)
+        activeDrop = undefined;
+    else if (activeDrop != obj)
+    {
+        document.getElementById(activeDrop).classList.toggle("show");
+        activeDrop = obj;
+    }
+
+    console.log(activeDrop);
+}
+
 BoardSetup(height, width);
 GrabValues();
 WalkerSetup();
