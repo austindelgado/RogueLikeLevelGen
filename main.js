@@ -1,35 +1,41 @@
-// Find a way to handle dynamic resizing
-let height = 30;
-let width = 30;
-
 const grid = document.getElementById('grid');
-
-// Create grid based off screen size
-let cellArray = new Array(height); // Create 2d array for the grid, probably not best practice
-for (let y = 0; y < height; y++)
-{
-    // New table row
-    let row = document.createElement('tr');
-    cellArray[y] = new Array(width);
-
-    for (let x = 0; x < width; x++)
-    {
-        // New col in row
-        let id = y * width + x;
-        let cell = document.createElement('td');
-        cell.id = id;
-
-        row.appendChild(cell);
-        cellArray[y][x] = cell;
-    }
-    grid.appendChild(row);
-}
 
 // Please organize and clean up all X and Y
 function Walker(x, y, dir) {
     this.posX = x;
     this.posY = y;
     this.dir = dir;
+}
+
+// Find a way to handle dynamic resizing
+let height = Math.floor((document.documentElement.clientHeight) / 26);
+let width = Math.floor(document.documentElement.clientWidth / 25);
+
+// Create grid based off screen size
+let cellArray // Create 2d array for the grid, probably not best practice
+
+function BoardSetup(height, width)
+{
+    cellArray = new Array(height);
+
+    for (let y = 0; y < height; y++)
+    {
+        // New table row
+        let row = document.createElement('tr');
+        cellArray[y] = new Array(width);
+    
+        for (let x = 0; x < width; x++)
+        {
+            // New col in row
+            let id = y * width + x;
+            let cell = document.createElement('td');
+            cell.id = id;
+    
+            row.appendChild(cell);
+            cellArray[y][x] = cell;
+        }
+        grid.appendChild(row);
+    }
 }
 
 // Walker variables
@@ -309,10 +315,10 @@ function GenerateNewLevel()
     WallGen();
 }
 
+BoardSetup(height, width);
 GrabValues();
 WalkerSetup();
 FloorGen();
 WallGen();
 
-// Grab button? Probably a better way to do this
 document.getElementById("generate").onclick = GenerateNewLevel;
