@@ -341,3 +341,9 @@ FloorGen();
 WallGen();
 
 document.getElementById("generate").onclick = GenerateNewLevel;
+
+// Generate new level on space bar press
+document.addEventListener('keypress', (event) => {
+    if (event.code == 'Space')
+        GenerateNewLevel();
+  }, false);
