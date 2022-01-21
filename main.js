@@ -8,7 +8,7 @@ function Walker(x, y, dir) {
 }
 
 // Find a way to handle dynamic resizing
-let height = Math.floor((document.documentElement.clientHeight) / 26);
+let height = Math.floor((document.documentElement.clientHeight) / 28);
 let width = Math.floor(document.documentElement.clientWidth / 25);
 
 // Create grid based off screen size
