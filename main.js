@@ -81,19 +81,19 @@ function FloorGen()
                     cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
                     floorNum++;
 
-                    if (currWalker.posY + 1 < height) 
+                    if (currWalker.posY + 1 < height - 1) 
                     {
                         cellArray[currWalker.posY + 1][currWalker.posX].classList.add("floor");
                         floorNum++;
                     }
                     
-                    if (currWalker.posX + 1 < width)
+                    if (currWalker.posX + 1 < width - 1)
                     {
                         cellArray[currWalker.posY][currWalker.posX + 1].classList.add("floor");
                         floorNum++;
                     }
                     
-                    if (currWalker.posX + 1 < width && currWalker.posY + 1 < height)
+                    if (currWalker.posX + 1 < width - 1 && currWalker.posY + 1 < height - 1)
                     {
                         cellArray[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor");
                         floorNum++;
@@ -188,19 +188,19 @@ function FloorGen()
     
         // Move walkers
         walkers.forEach ((currWalker) => {
-            if (currWalker.dir == 0 && currWalker.posY + 1 < height) 
+            if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
             {
                 currWalker.posY++;
             }
-            else if (currWalker.dir == 1 && currWalker.posX + 1 < width)
+            else if (currWalker.dir == 1 && currWalker.posX + 1 < width - 1)
             {
                 currWalker.posX++;
             }
-            else if (currWalker.dir == 2 && currWalker.posY - 1 > -1)
+            else if (currWalker.dir == 2 && currWalker.posY - 1 > 0)
             {
                 currWalker.posY--;
             }
-            else if (currWalker.dir == 3 && currWalker.posX - 1 > -1)
+            else if (currWalker.dir == 3 && currWalker.posX - 1 > 0)
             {
                 currWalker.posX--;
             }
