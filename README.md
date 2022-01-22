@@ -1,2 +1,2 @@
 # RogueLikeLevelGen
-Interactive level generator based off Nuclear Throne
+Interactive level generator based on Nuclear Throne
