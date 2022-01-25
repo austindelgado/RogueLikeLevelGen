@@ -12,7 +12,7 @@
             <button onclick="Dropdown('WalkerDropdown')" class="dropbtn">Walkers</button>
             <div id="WalkerDropdown" class="dropdown-content">
                 <label>Starting Walkers:
-                    <input type="number" id="startWalkers" name="startWalkers" min="1" max="100" value="3" style="display: inline;">
+                    <input type="number" id="startWalkers" name="startWalkers" min="1" max="100" value="3">
                 </label>
 
                 <label>Max Walkers:
@@ -20,11 +20,11 @@
                 </label>
 
                 <label>Spawn Chance:
-                    <input type="number" id="spawnChance" name="spawnChance" min="0" max="1" step="0.01" value="0.05" style="display: inline;">
+                    <input type="number" id="spawnChance" name="spawnChance" min="0" max="1" step="0.01" value="0.05">
                 </label>
 
                 <label>Delete Chance:
-                    <input type="number" id="deleteChance" name="deleteChance" min="0" max="1" step="0.01" value="0.05" style="display: inline;">
+                    <input type="number" id="deleteChance" name="deleteChance" min="0" max="1" step="0.01" value="0.05">
                 </label>
             </div>
         </div>
@@ -32,15 +32,15 @@
             <button onclick="Dropdown('TurnDropdown')" class="dropbtn">Turn</button>
             <div id="TurnDropdown" class="dropdown-content">
                 <label>Left Turn Chance:
-                    <input type="number" id="leftTurnChance" name="leftTurnChance" min="0.1" max="1" step="0.01" value="0.2" style="display: inline;">
+                    <input type="number" id="leftTurnChance" name="leftTurnChance" min="0.1" max="1" step="0.01" value="0.2">
                 </label>
 
                 <label>Right Turn Chance:
-                    <input type="number" id="rightTurnChance" name="rightTurnChance" min="0.1" max="1" step="0.01" value="0.2" style="display: inline;">
+                    <input type="number" id="rightTurnChance" name="rightTurnChance" min="0.1" max="1" step="0.01" value="0.2">
                 </label>
 
                 <label>U-turn Chance:
-                    <input type="number" id="uTurnChance" name="uTurnChance" min="0.1" max="1" step="0.01" value="0.2" style="display: inline;">
+                    <input type="number" id="uTurnChance" name="uTurnChance" min="0.1" max="1" step="0.01" value="0.2">
                 </label>
 
             </div>
@@ -49,11 +49,11 @@
             <button onclick="Dropdown('SizeDropdown')" class="dropbtn">Size</button>
             <div id="SizeDropdown" class="dropdown-content">
                 <label>Big Room Chance:
-                    <input type="number" id="bigRoomChance" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5" style="display: inline;">
+                    <input type="number" id="bigRoomChance" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
                 </label>
 
                 <label>Max Floor Tiles:
-                    <input type="number" id="maxFloor" name="maxFloor" min="0" max="10000" step="1" value="110" style="display: inline;">
+                    <input type="number" id="maxFloor" name="maxFloor" min="0" max="10000" step="1" value="110">
                 </label>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <div id="AboutDropdown" class="dropdown-content">
             </div>
         </div>
-        <button type="button" id="generate" style="display: inline;">Generate</button>  
+        <button type="button" id="generate">Generate</button>  
     </header>
     <table id="grid">
     </table>
