@@ -127,3 +127,7 @@ input[type="number"]
 .dropdown button {
     background-color: rgb(145, 100, 175);
 }
+
+.about {
+    color: black;
+}
