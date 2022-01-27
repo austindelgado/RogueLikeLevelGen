@@ -317,21 +317,20 @@ function GenerateNewLevel()
 
 let activeDrop;
 
-function Dropdown(obj) 
+function Dropdown(obj, dropdown) 
 {  
-    document.getElementById(obj).classList.toggle("show");
+    obj.classList.toggle("show");
+    document.getElementById(dropdown).classList.toggle("show");
 
     if (activeDrop == undefined)
-        activeDrop = obj;
-    else if (activeDrop == obj)
+        activeDrop = dropdown;
+    else if (activeDrop == dropdown)
         activeDrop = undefined;
-    else if (activeDrop != obj)
+    else if (activeDrop != dropdown)
     {
         document.getElementById(activeDrop).classList.toggle("show");
-        activeDrop = obj;
+        activeDrop = dropdown;
     }
-
-    console.log(activeDrop);
 }
 
 BoardSetup(height, width);

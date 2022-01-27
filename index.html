@@ -9,7 +9,7 @@
             RogueLike Level Gen
         </h3>
         <div id="walkerDrop" class="dropdown">
-            <button onclick="Dropdown('WalkerDropdown')" class="dropbtn">Walkers</button>
+            <button onclick="Dropdown(this, 'WalkerDropdown')" class="dropbtn">Walkers</button>
             <div id="WalkerDropdown" class="dropdown-content">
                 <label>Starting Walkers:
                     <input type="number" id="startWalkers" name="startWalkers" min="1" max="100" value="3">
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div id="turnDrop" class="dropdown">
-            <button onclick="Dropdown('TurnDropdown')" class="dropbtn">Turn</button>
+            <button onclick="Dropdown(this, 'TurnDropdown')" class="dropbtn">Turn</button>
             <div id="TurnDropdown" class="dropdown-content">
                 <label>Left Turn Chance:
                     <input type="number" id="leftTurnChance" name="leftTurnChance" min="0.1" max="1" step="0.01" value="0.2">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div id="sizeDrop" class="dropdown">
-            <button onclick="Dropdown('SizeDropdown')" class="dropbtn">Size</button>
+            <button onclick="Dropdown(this, 'SizeDropdown')" class="dropbtn">Size</button>
             <div id="SizeDropdown" class="dropdown-content">
                 <label>Big Room Chance:
                     <input type="number" id="bigRoomChance" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div id="themeDrop" class="dropdown">
-            <button onclick="Dropdown('ThemeDropdown')" class="dropbtn">Theme</button>
+            <button onclick="Dropdown(this, 'ThemeDropdown')" class="dropbtn">Theme</button>
             <div id="ThemeDropdown" class="dropdown-content">
                 <input type="radio" id="desert" value="desert" name="theme" checked>
                 <label for="desert">Desert</label>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <div id="animationDrop" class="dropdown">
-            <button onclick="Dropdown('AnimationDropdown')" class="dropbtn">Animation</button>
+            <button onclick="Dropdown(this, 'AnimationDropdown')" class="dropbtn">Animation</button>
             <div id="AnimationDropdown" class="dropdown-content">
                 <label>Speed:
                     <input type="range" min="1" max="100" value="50" class="slider" id="speed">
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div id="aboutDrop" class="dropdown">
-            <button onclick="Dropdown('AboutDropdown')" class="dropbtn">About</button>
+            <button onclick="Dropdown(this, 'AboutDropdown')" class="dropbtn">About</button>
             <div id="AboutDropdown" class="dropdown-content">
                 <p class="about">This is placeholder text. Don't forget to fill this out.</p>
             </div>
