@@ -8,7 +8,7 @@
         <h3>
             RogueLike Level Gen
         </h3>
-        <div class="dropdown">
+        <div id="walkerDrop" class="dropdown">
             <button onclick="Dropdown('WalkerDropdown')" class="dropbtn">Walkers</button>
             <div id="WalkerDropdown" class="dropdown-content">
                 <label>Starting Walkers:
@@ -28,7 +28,7 @@
                 </label>
             </div>
         </div>
-        <div class="dropdown">
+        <div id="turnDrop" class="dropdown">
             <button onclick="Dropdown('TurnDropdown')" class="dropbtn">Turn</button>
             <div id="TurnDropdown" class="dropdown-content">
                 <label>Left Turn Chance:
@@ -45,7 +45,7 @@
 
             </div>
         </div>
-        <div class="dropdown">
+        <div id="sizeDrop" class="dropdown">
             <button onclick="Dropdown('SizeDropdown')" class="dropbtn">Size</button>
             <div id="SizeDropdown" class="dropdown-content">
                 <label>Big Room Chance:
@@ -57,17 +57,40 @@
                 </label>
             </div>
         </div>
-        <div class="dropdown">
-            <button onclick="Dropdown('ColorDropdown')" class="dropbtn">Colors</button>
-            <div id="ColorDropdown" class="dropdown-content">
+        <div id="themeDrop" class="dropdown">
+            <button onclick="Dropdown('ThemeDropdown')" class="dropbtn">Theme</button>
+            <div id="ThemeDropdown" class="dropdown-content">
+                <input type="radio" id="desert" value="desert" name="theme" checked>
+                <label for="desert">Desert</label>
+
+                <input type="radio" id="sewers" value="sewers" name="theme">
+                <label for="sewers">Sewers</label>
+
+                <input type="radio" id="scrapyard" value="scrapyard" name="theme">
+                <label for="scrapyard">Scrapyard</label>
+
+                <input type="radio" id="crystal" value="crystal" name="theme">
+                <label for="crystal">Crystal Caves</label>
+
+                <input type="radio" id="frozen" value="frozen" name="theme">
+                <label for="frozen">Frozen City</label>
+
+                <input type="radio" id="labs" value="labs" name="theme">
+                <label for="labs">Labs</label>
+
+                <input type="radio" id="palace" value="palace" name="theme">
+                <label for="palace">The Palace</label>
+
+                <input type="radio" id="custom" value="custom" name="theme">
+                <label for="custom">Custom</label>
             </div>
         </div>
-        <div class="dropdown">
+        <div id="animationDrop" class="dropdown">
             <button onclick="Dropdown('AnimationDropdown')" class="dropbtn">Animation</button>
             <div id="AnimationDropdown" class="dropdown-content">
             </div>
         </div>
-        <div class="dropdown">
+        <div id="aboutDrop" class="dropdown">
             <button onclick="Dropdown('AboutDropdown')" class="dropbtn">About</button>
             <div id="AboutDropdown" class="dropdown-content">
             </div>

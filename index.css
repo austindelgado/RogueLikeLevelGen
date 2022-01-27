@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+body {
+    background: rgb(121, 133, 143);
+}
+
 table {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-spacing: 0;
     border-collapse: collapse;
     border: 1px solid rgb(0, 0, 0);
@@ -58,7 +64,7 @@ td{
 header {
     padding: 10px;
     text-align: left;
-    background: #5daa6e;
+    background: #313447;
     color: white;
     font-family: 'Press Start 2P', cursive;
 }
@@ -117,3 +123,7 @@ input[type="number"]
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+.dropdown button {
+    background-color: rgb(145, 100, 175);
+}
