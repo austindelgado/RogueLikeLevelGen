@@ -38,21 +38,28 @@ function BoardSetup(height, width)
     }
 }
 
-// Walker variables
+// Walker
+let walkers = [];
 let startingY = Math.round(height / 2);
 let startingX = Math.round(width / 2);
 let startingWalkers;
 let maxWalkers;
+let walkerSpawnChance;
+let walkerDeleteChance;
+
+// Turn
 let leftTurnChance;
 let rightTurnChance;
 let uTurnChance;
-let walkerSpawnChance;
-let walkerDeleteChance;
+
+//Size
 let bigRoomChance;
 let maxFloor;
 let floorNum = 0;
 
-let walkers = [];
+// Theme
+var floorColor;
+var wallColor;
 
 function WalkerSetup() 
 {
