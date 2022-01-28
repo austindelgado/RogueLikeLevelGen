@@ -337,6 +337,8 @@ function Dropdown(obj, dropdown)
         activeDrop = undefined;
     else if (activeDrop != dropdown)
     {
+        // Close previously open 
+        document.getElementById(activeDrop).previousElementSibling.classList.toggle("show");
         document.getElementById(activeDrop).classList.toggle("show");
         activeDrop = dropdown;
     }
