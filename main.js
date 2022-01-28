@@ -286,15 +286,24 @@ function ClearLevel()
 
 function GrabValues()
 {
+    // Walkers
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
+    walkerSpawnChance = parseFloat(document.getElementById('spawnChance').value);
+    walkerDeleteChance = parseFloat(document.getElementById('deleteChance').value);
+
+    // Turn
     leftTurnChance = parseFloat(document.getElementById('leftTurnChance').value);
     rightTurnChance = parseFloat(document.getElementById('rightTurnChance').value);
     uTurnChance = parseFloat(document.getElementById('uTurnChance').value);
-    walkerSpawnChance = parseFloat(document.getElementById('spawnChance').value);
-    walkerDeleteChance = parseFloat(document.getElementById('deleteChance').value);
+
+    // Size
     bigRoomChance = parseFloat(document.getElementById('bigRoomChance').value);
     maxFloor = document.getElementById('maxFloor').value;
+
+    // Theme
+
+    // Animation
 
     if (maxFloor > height * width)
         maxFloor = height * width;
