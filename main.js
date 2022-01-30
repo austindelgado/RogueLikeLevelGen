@@ -324,6 +324,25 @@ function GetTheme() {
     }
 }
 
+function ChangeTheme(newTheme)
+{
+    theme = newTheme;
+    console.log(theme);
+
+    // Change all floor and wall themes
+    let floors = document.getElementsByClassName('floor');
+    for (let i = 0; i < floors.length; i++)
+    {
+        floors[i].className = `floor ${theme}Floor`;
+    }
+
+    let walls = document.getElementsByClassName('wall');
+    for (let i = 0; i < walls.length; i++)
+    {
+        walls[i].className = `wall ${theme}Wall`;
+    }
+}
+
 function GetDistance(x1, y1, x2, y2)
 {
     return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
