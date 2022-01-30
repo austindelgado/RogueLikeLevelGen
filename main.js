@@ -351,6 +351,15 @@ function Dropdown(obj, dropdown)
     }
 }
 
+var changeStyle = function(selector, prop, value) {
+    var style = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
+    for (var i = 0; i < style.length; i++) {
+        if (style[i].selectorText == selector) {
+        style[i].style[prop] = value;
+        }
+    }
+}
+
 BoardSetup(height, width);
 GrabValues();
 WalkerSetup();
@@ -363,4 +372,4 @@ document.getElementById("generate").onclick = GenerateNewLevel;
 document.addEventListener('keypress', (event) => {
     if (event.code == 'Space')
         GenerateNewLevel();
-  }, false);
+}, false);

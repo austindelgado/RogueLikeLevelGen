@@ -45,12 +45,12 @@ label {
 
 .floor {
     border: 1px solid rgba(255, 255, 255, 0);
-    background-color: rgb(237,191,84)
+    background-color: rgb(237,191,84);
 }
 
 .wall {
     border: 1px solid rgba(255, 255, 255, 0);
-    background-color: rgb(175,141,106)
+    background-color: rgb(175,141,106);
 }
 
 .floor.chest {
