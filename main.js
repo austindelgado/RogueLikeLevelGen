@@ -333,6 +333,9 @@ function ChangeTheme(newTheme)
     let floors = document.getElementsByClassName('floor');
     for (let i = 0; i < floors.length; i++)
     {
+        if (floors[i].classList.contains('chest') || floors[i].classList.contains('rad') || floors[i].classList.contains('ammo'))
+            continue;
+
         floors[i].className = `floor ${theme}Floor`;
     }
 
