@@ -58,8 +58,7 @@ let maxFloor;
 let floorNum = 0;
 
 // Theme
-var floorColor;
-var wallColor;
+let theme;
 
 function WalkerSetup() 
 {
@@ -85,24 +84,24 @@ function FloorGen()
             {
                 if (Math.random() < bigRoomChance)
                 {
-                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
                     floorNum++;
 
                     if (currWalker.posY + 1 < height - 1) 
                     {
-                        cellArray[currWalker.posY + 1][currWalker.posX].classList.add("floor");
+                        cellArray[currWalker.posY + 1][currWalker.posX].classList.add("floor", `${theme}Floor`);
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1)
                     {
-                        cellArray[currWalker.posY][currWalker.posX + 1].classList.add("floor");
+                        cellArray[currWalker.posY][currWalker.posX + 1].classList.add("floor", `${theme}Floor`);
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1 && currWalker.posY + 1 < height - 1)
                     {
-                        cellArray[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor");
+                        cellArray[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor", `${theme}Floor`);
                         floorNum++;
                     }
 
@@ -110,7 +109,7 @@ function FloorGen()
                 }
                 else
                 {
-                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor");
+                    cellArray[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
                     floorNum++;
                     console.log("Adding floor");
                 }
@@ -257,19 +256,19 @@ function WallGen()
             {
                 if (y + 1 < height && !cellArray[y + 1][x].classList.contains("floor"))
                 {
-                    cellArray[y + 1][x].classList.add("wall");
+                    cellArray[y + 1][x].classList.add("wall", `${theme}Wall`);
                 }
                 if (x + 1 < width && !cellArray[y][x + 1].classList.contains("floor"))
                 {
-                    cellArray[y][x + 1].classList.add("wall");
+                    cellArray[y][x + 1].classList.add("wall", `${theme}Wall`);
                 }
                 if (y - 1 > -1 && !cellArray[y - 1][x].classList.contains("floor"))
                 {
-                    cellArray[y - 1][x].classList.add("wall");
+                    cellArray[y - 1][x].classList.add("wall", `${theme}Wall`);
                 }
                 if (x - 1 > -1 && !cellArray[y][x - 1].classList.contains("floor"))
                 {
-                    cellArray[y][x - 1].classList.add("wall");
+                    cellArray[y][x - 1].classList.add("wall", `${theme}Wall`);
                 }
             }
         }
@@ -309,11 +308,20 @@ function GrabValues()
     maxFloor = document.getElementById('maxFloor').value;
 
     // Theme
-
+    GetTheme();
     // Animation
 
     if (maxFloor > height * width)
         maxFloor = height * width;
+}
+
+function GetTheme() {
+    var options = document.getElementsByName('theme');
+              
+    for(i = 0; i < options.length; i++) {
+        if(options[i].checked)
+            theme = options[i].value;
+    }
 }
 
 function GetDistance(x1, y1, x2, y2)
