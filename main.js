@@ -59,6 +59,8 @@ let floorNum = 0;
 
 // Theme
 let theme;
+let customFloor;
+let customWall;
 
 function WalkerSetup() 
 {
@@ -381,7 +383,7 @@ function Dropdown(obj, dropdown)
     }
 }
 
-var changeStyle = function(selector, prop, value) {
+function ChangeStyle(selector, prop, value) {
     var style = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
     for (var i = 0; i < style.length; i++) {
         if (style[i].selectorText == selector) {
@@ -403,3 +405,21 @@ document.addEventListener('keypress', (event) => {
     if (event.code == 'Space')
         GenerateNewLevel();
 }, false);
+
+// Get customFloor color
+document.getElementById('floorPicker').addEventListener('change', UpdateFloorValue);
+function UpdateFloorValue(input) {
+  customFloor = input.target.value;
+  ChangeStyle('.customFloor', 'background-color', customFloor);
+  ChangeStyle('#custom', 'background-color', customFloor);
+}
+
+// Get custom wall color
+document.getElementById('wallPicker').addEventListener('change', UpdateWallValue);
+function UpdateWallValue(input) {
+  customWall = input.target.value;
+  ChangeStyle('.customWall', 'background-color', customWall);
+  ChangeStyle('#custom', 'border', customWall);
+  ChangeStyle('#custom', 'border-width', '15px');
+  ChangeStyle('#custom', 'border-style', 'solid');
+}
