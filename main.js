@@ -59,8 +59,6 @@ let floorNum = 0;
 
 // Theme
 let theme;
-let customFloor;
-let customWall;
 
 function WalkerSetup() 
 {
@@ -409,7 +407,7 @@ document.addEventListener('keypress', (event) => {
 // Get customFloor color
 document.getElementById('floorPicker').addEventListener('change', UpdateFloorValue);
 function UpdateFloorValue(input) {
-  customFloor = input.target.value;
+  let customFloor = input.target.value;
   ChangeStyle('.customFloor', 'background-color', customFloor);
   ChangeStyle('#custom', 'background-color', customFloor);
 }
@@ -417,7 +415,7 @@ function UpdateFloorValue(input) {
 // Get custom wall color
 document.getElementById('wallPicker').addEventListener('change', UpdateWallValue);
 function UpdateWallValue(input) {
-  customWall = input.target.value;
+  let customWall = input.target.value;
   ChangeStyle('.customWall', 'background-color', customWall);
   ChangeStyle('#custom', 'border', customWall);
   ChangeStyle('#custom', 'border-width', '15px');
