@@ -251,14 +251,14 @@ label.picker {
 }
 
 #custom {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(155, 232, 104);
     border: rgb(255, 255, 255);
     border-width: 15px;
     border-style: solid;
 }
 
 .customFloor {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(155, 232, 104);
 }
 
 .customWall {
