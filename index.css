@@ -137,6 +137,14 @@ input[type="number"]
     display: flow-root;
 }
 
+label.picker {
+    padding: 0;
+}
+
+.pickers {
+    padding-left: 12%;
+}
+
 /* Themes */
 #desert {
     background-color: rgb(237,191,84);
