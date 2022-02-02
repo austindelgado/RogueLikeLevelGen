@@ -234,16 +234,19 @@ function SpawnObject(x, y, obj)
     {
         console.log("Spawning Chest");
         cellArray[y][x].classList.add('chest');
+        cellArray[y][x].innerHTML = '';
     }
     else if (obj == 1)
     {
         console.log("Spawning Ammo");
         cellArray[y][x].classList.add('ammo');
+        cellArray[y][x].innerHTML = '';
     }
     else if (obj == 2)
     {
         console.log("Spawning Rad");
         cellArray[y][x].classList.add('rad');
+        cellArray[y][x].innerHTML = '';
     }
 }
 
