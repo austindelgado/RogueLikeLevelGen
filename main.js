@@ -51,6 +51,7 @@ let walkerDeleteChance;
 let leftTurnChance;
 let rightTurnChance;
 let uTurnChance;
+let noTurnChance;
 
 //Size
 let bigRoomChance;
@@ -161,6 +162,7 @@ function FloorGen()
             const rng = Math.random();
             console.log(rng);
 
+            // Find a better way maybe?
             if (0 < rng < leftTurnChance)
             {
                 console.log("Walker left turn");
@@ -302,6 +304,7 @@ function GrabValues()
     leftTurnChance = parseFloat(document.getElementById('leftTurnChance').value);
     rightTurnChance = parseFloat(document.getElementById('rightTurnChance').value);
     uTurnChance = parseFloat(document.getElementById('uTurnChance').value);
+    noTurnChance = parseFloat(document.getElementById('noTurnChance').value);
 
     // Size
     bigRoomChance = parseFloat(document.getElementById('bigRoomChance').value);
