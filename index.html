@@ -25,8 +25,8 @@
                 </label>
 
                 <label>Delete Chance:
-                    <input type="range" id="deleteChance" name="deleteChance" min="0" max="1" step="0.01" value="0.05">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="deleteRange" name="deleteChance" min="0" max="1" step="0.01" value="0.05">
+                    <input type="number" id="deleteNumber" name="deleteChance" min="0" max="1" step="0.01" value="0.05">
                 </label>
             </div>
         </div>
@@ -34,23 +34,23 @@
             <button onclick="Dropdown(this, 'TurnDropdown')" class="dropbtn">Turn</button>
             <div id="TurnDropdown" class="dropdown-content">
                 <label>Left Turn Chance:
-                    <input type="range" id="leftTurnChance" name="leftTurnChance" min="0" max="1" step="0.01" value="0.2">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="leftRange" name="leftTurnChance" min="0" max="1" step="0.01" value="0.2">
+                    <input type="number" id="leftNumber" name="leftTurnChance" min="0" max="1" step="0.01" value="0.2">
                 </label>
 
                 <label>Right Turn Chance:
-                    <input type="range" id="rightTurnChance" name="rightTurnChance" min="0" max="1" step="0.01" value="0.2">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="rightRange" name="rightTurnChance" min="0" max="1" step="0.01" value="0.2">
+                    <input type="number" id="rightNumber" name="rightTurnChance" min="0" max="1" step="0.01" value="0.2">
                 </label>
 
                 <label>180 Turn Chance:
-                    <input type="range" id="uTurnChance" name="uTurnChance" min="0" max="1" step="0.01" value="0.2">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="uTurnRange" name="uTurnChance" min="0" max="1" step="0.01" value="0.2">
+                    <input type="number" id="uTurnNumber" name="uTurnChance" min="0" max="1" step="0.01" value="0.2">
                 </label>
 
                 <label>No Turn Chance:
-                    <input type="range" id="noTurnChance" name="noTurnChance" min="0" max="1" step="0.01" value="0.4">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="noTurnRange" name="noTurnChance" min="0" max="1" step="0.01" value="0.4">
+                    <input type="number" id="noTurnNumber" name="noTurnChance" min="0" max="1" step="0.01" value="0.4">
                 </label>
             </div>
         </div>
@@ -58,8 +58,8 @@
             <button onclick="Dropdown(this, 'SizeDropdown')" class="dropbtn">Size</button>
             <div id="SizeDropdown" class="dropdown-content">
                 <label>Big Room Chance:
-                    <input type="range" id="bigRoomChance" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
-                    <input type="number" id="" name="" min="1" max="100" value="10">
+                    <input type="range" id="bigRoomRange" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
+                    <input type="number" id="bigRoomNumber" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
                 </label>
 
                 <label>Max Floor Tiles:
@@ -114,7 +114,8 @@
             <button onclick="Dropdown(this, 'AnimationDropdown')" class="dropbtn">Animation</button>
             <div id="AnimationDropdown" class="dropdown-content">
                 <label>Speed:
-                    <input type="range" min="1" max="100" value="50" class="slider" id="speed">
+                    <input type="range" id="animationRange" min="1" max="100" value="50">
+                    <input type="number" id="animationNumber" min="1" max="100" value="50">
                 </label>
             </div>
         </div>

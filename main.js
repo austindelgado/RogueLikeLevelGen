@@ -301,16 +301,16 @@ function GrabValues()
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
     walkerSpawnChance = parseFloat(document.getElementById('spawnNumber').value);
-    walkerDeleteChance = parseFloat(document.getElementById('deleteChance').value);
+    walkerDeleteChance = parseFloat(document.getElementById('deleteNumber').value);
 
     // Turn
-    leftTurnChance = parseFloat(document.getElementById('leftTurnChance').value);
-    rightTurnChance = parseFloat(document.getElementById('rightTurnChance').value);
-    uTurnChance = parseFloat(document.getElementById('uTurnChance').value);
-    noTurnChance = parseFloat(document.getElementById('noTurnChance').value);
+    leftTurnChance = parseFloat(document.getElementById('leftNumber').value);
+    rightTurnChance = parseFloat(document.getElementById('rightNumber').value);
+    uTurnChance = parseFloat(document.getElementById('uTurnNumber').value);
+    noTurnChance = parseFloat(document.getElementById('noTurnNumber').value);
 
     // Size
-    bigRoomChance = parseFloat(document.getElementById('bigRoomChance').value);
+    bigRoomChance = parseFloat(document.getElementById('bigRoomNumber').value);
     maxFloor = document.getElementById('maxFloor').value;
 
     // Theme
@@ -429,8 +429,31 @@ function UpdateWallValue(input) {
 }
 
 // Handle range and number inputs
+// There has to be a better way
 document.getElementById('spawnRange').addEventListener('input', updateValue);
 document.getElementById('spawnNumber').addEventListener('input', updateValue);
+
+document.getElementById('deleteRange').addEventListener('input', updateValue);
+document.getElementById('deleteNumber').addEventListener('input', updateValue);
+
+document.getElementById('leftRange').addEventListener('input', updateValue);
+document.getElementById('leftNumber').addEventListener('input', updateValue);
+
+document.getElementById('rightRange').addEventListener('input', updateValue);
+document.getElementById('rightNumber').addEventListener('input', updateValue);
+
+document.getElementById('uTurnRange').addEventListener('input', updateValue);
+document.getElementById('uTurnNumber').addEventListener('input', updateValue);
+
+document.getElementById('noTurnRange').addEventListener('input', updateValue);
+document.getElementById('noTurnNumber').addEventListener('input', updateValue);
+
+document.getElementById('bigRoomRange').addEventListener('input', updateValue);
+document.getElementById('bigRoomNumber').addEventListener('input', updateValue);
+
+document.getElementById('animationRange').addEventListener('input', updateValue);
+document.getElementById('animationNumber').addEventListener('input', updateValue);
+
 function updateValue (e) {
     var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
     sibling.value = e.target.value;
