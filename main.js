@@ -300,7 +300,7 @@ function GrabValues()
     // Walkers
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
-    walkerSpawnChance = parseFloat(document.getElementById('spawnChance').value);
+    walkerSpawnChance = parseFloat(document.getElementById('spawnNumber').value);
     walkerDeleteChance = parseFloat(document.getElementById('deleteChance').value);
 
     // Turn
@@ -426,4 +426,12 @@ function UpdateWallValue(input) {
   ChangeStyle('#custom', 'border', customWall);
   ChangeStyle('#custom', 'border-width', '15px');
   ChangeStyle('#custom', 'border-style', 'solid');
+}
+
+// Handle range and number inputs
+document.getElementById('spawnRange').addEventListener('input', updateValue);
+document.getElementById('spawnNumber').addEventListener('input', updateValue);
+function updateValue (e) {
+    var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
+    sibling.value = e.target.value;
 }
