@@ -387,6 +387,23 @@ function Dropdown(obj, dropdown)
     }
 }
 
+window.onclick = function(event)
+{
+    if (!event.target.matches('.dropbtn')) 
+    {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+            openDropdown.previousElementSibling.classList.remove('show');
+          }
+        }
+        activeDrop = undefined; 
+    }
+}
+
 function ChangeStyle(selector, prop, value) {
     var style = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
     for (var i = 0; i < style.length; i++) {
