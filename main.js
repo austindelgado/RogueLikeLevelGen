@@ -389,7 +389,7 @@ function Dropdown(obj, dropdown)
 
 window.onclick = function(event)
 {
-    if (!event.target.matches('.dropbtn')) 
+    if (!event.target.matches(['.dropbtn', '.dropdown-content',])) 
     {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
