@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
     background: rgb(121, 133, 143);
@@ -15,7 +15,7 @@ table {
 }
 
 button {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Roboto', sans-serif;
     padding:0.3em 1.2em;
     margin:0 0.3em 0.3em 0;
 }
@@ -68,12 +68,12 @@ header {
     text-align: left;
     background: #313447;
     color: white;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 input[type="number"]
 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Dropdown Button */
@@ -84,7 +84,7 @@ input[type="number"]
   font-size: 16px;
   border: none;
   cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Dropdown button on hover & focus */
