@@ -77,8 +77,12 @@ function FloorGen()
     let radX, radY, radMax;
     radX = radY = radMax = 0;
 
+    steps = 0;
     while (floorNum < maxFloor)
     {
+        if (steps > 1000)
+            break;
+
         //Add floors
         walkers.forEach ((currWalker) => {
             if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
@@ -214,6 +218,8 @@ function FloorGen()
             }
             console.log("Walker moving");
         });
+
+        steps++;
     }
 
     if (chestX != 0 || chestY != 0)
