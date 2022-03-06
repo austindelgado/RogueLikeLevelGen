@@ -480,4 +480,37 @@ document.getElementById('animationNumber').addEventListener('input', updateValue
 function updateValue (e) {
     var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
     sibling.value = e.target.value;
+
+    leftTurnChance = parseFloat(document.getElementById('leftNumber').value);
+    rightTurnChance = parseFloat(document.getElementById('rightNumber').value);
+    uTurnChance = parseFloat(document.getElementById('uTurnNumber').value);
+    noTurnChance = parseFloat(document.getElementById('noTurnNumber').value);
+
+    if (100 - (leftTurnChance + rightTurnChance + uTurnChance + noTurnChance) != 0)
+    {
+        if (noTurnChance != 0 && e.target.name != 'noTurnChance')
+        {
+            noTurnChance = 100 - (leftTurnChance + rightTurnChance + uTurnChance);
+            document.getElementById('noTurnRange').value = noTurnChance;
+            document.getElementById('noTurnNumber').value = noTurnChance;
+        }
+        else if (uTurnChance != 0 && e.target.name != 'uTurnChance')
+        {
+            uTurnChance = 100 - (leftTurnChance + rightTurnChance + noTurnChance);
+            document.getElementById('uTurnRange').value = uTurnChance;
+            document.getElementById('uTurnNumber').value = uTurnChance;
+        }
+        else if (rightTurnChance != 0 && e.target.name != 'rightTurnChance')
+        {
+            rightTurnChance = 100 - (leftTurnChance + uTurnChance + noTurnChance);
+            document.getElementById('rightRange').value = rightTurnChance;
+            document.getElementById('rightNumber').value = rightTurnChance;
+        }
+        else if (leftTurnChance != 0 && e.target.name != 'leftTurnChance')
+        {
+            leftTurnChance = 100 - (uTurnChance + rightTurnChance + noTurnChance);
+            document.getElementById('leftRange').value = leftTurnChance;
+            document.getElementById('leftNumber').value = leftTurnChance;
+        }
+    }
 }
