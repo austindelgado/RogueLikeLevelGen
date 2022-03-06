@@ -486,29 +486,44 @@ function updateValue (e) {
     uTurnChance = parseFloat(document.getElementById('uTurnNumber').value);
     noTurnChance = parseFloat(document.getElementById('noTurnNumber').value);
 
-    if (100 - (leftTurnChance + rightTurnChance + uTurnChance + noTurnChance) != 0)
+    if (leftTurnChance + rightTurnChance + uTurnChance + noTurnChance != 100)
     {
-        if (noTurnChance != 0 && e.target.name != 'noTurnChance')
+        if (noTurnChance >= 0 && e.target.name != 'noTurnChance')
         {
             noTurnChance = 100 - (leftTurnChance + rightTurnChance + uTurnChance);
+            if (noTurnChance < 0)
+                noTurnChance = 0                
+
             document.getElementById('noTurnRange').value = noTurnChance;
             document.getElementById('noTurnNumber').value = noTurnChance;
         }
-        else if (uTurnChance != 0 && e.target.name != 'uTurnChance')
+
+        if (uTurnChance >= 0 && e.target.name != 'uTurnChance')
         {
             uTurnChance = 100 - (leftTurnChance + rightTurnChance + noTurnChance);
+            if (uTurnChance < 0)
+                uTurnChance = 0
+
             document.getElementById('uTurnRange').value = uTurnChance;
             document.getElementById('uTurnNumber').value = uTurnChance;
         }
-        else if (rightTurnChance != 0 && e.target.name != 'rightTurnChance')
+
+        if (rightTurnChance >= 0 && e.target.name != 'rightTurnChance')
         {
             rightTurnChance = 100 - (leftTurnChance + uTurnChance + noTurnChance);
+            if (rightTurnChance < 0)
+                rightTurnChance = 0
+
             document.getElementById('rightRange').value = rightTurnChance;
             document.getElementById('rightNumber').value = rightTurnChance;
         }
-        else if (leftTurnChance != 0 && e.target.name != 'leftTurnChance')
+
+        if (leftTurnChance >= 0 && e.target.name != 'leftTurnChance')
         {
             leftTurnChance = 100 - (uTurnChance + rightTurnChance + noTurnChance);
+            if (leftTurnChance < 0)
+                leftTurnChance = 0
+                
             document.getElementById('leftRange').value = leftTurnChance;
             document.getElementById('leftNumber').value = leftTurnChance;
         }
