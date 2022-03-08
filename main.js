@@ -109,14 +109,11 @@ function FloorGen()
                         cellArray[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor", `${theme}Floor`);
                         floorNum++;
                     }
-
-                    console.log("Adding 2x2 floor");
                 }
                 else
                 {
                     cellArray[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
                     floorNum++;
-                    console.log("Adding floor");
                 }
             }
 
@@ -138,7 +135,6 @@ function FloorGen()
             if (Math.random() < walkerSpawnChance)
             {
                 walkers.push(new Walker(currWalker.posX, currWalker.posY));
-                console.log("New walker");
                 // Maybe limit this?
             }
         });
@@ -148,7 +144,6 @@ function FloorGen()
             if (Math.random() < walkerDeleteChance && walkers.length > 1)
             {
                 walkers.splice(walkers.indexOf(currWalker, 1));
-                console.log("Deleting walker");
 
                 // Spawn ammo
                 newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
@@ -164,22 +159,18 @@ function FloorGen()
         // Chance to turn
         walkers.forEach ((currWalker) => {
             const rng = Math.random();
-            console.log(rng);
 
             // Find a better way maybe?
             if (0 < rng < leftTurnChance)
             {
-                console.log("Walker left turn");
                 currWalker.dir--;
             }
             else if (leftTurnChance < rng < rightTurnChance + leftTurnChance)
             {
-                console.log("Walker right turn");
                 currWalker.dir++;
             }
             else if (rightTurnChance + leftTurnChance < rng < uTurnChance + leftTurnChance + rightTurnChance)
             {
-                console.log("Walker u turn");
                 currWalker.dir += 2;
 
                 // Check chest distance on u-turn
@@ -216,7 +207,6 @@ function FloorGen()
             {
                 currWalker.posX--;
             }
-            console.log("Walker moving");
         });
 
         steps++;
@@ -234,23 +224,19 @@ function FloorGen()
 
 function SpawnObject(x, y, obj) 
 {
-    console.log(`${x}, ${y}`);
     // 0 - Chest
     if (obj == 0)
     {
-        console.log("Spawning Chest");
         cellArray[y][x].classList.add('chest');
         cellArray[y][x].innerHTML = '';
     }
     else if (obj == 1)
     {
-        console.log("Spawning Ammo");
         cellArray[y][x].classList.add('ammo');
         cellArray[y][x].innerHTML = '';
     }
     else if (obj == 2)
     {
-        console.log("Spawning Rad");
         cellArray[y][x].classList.add('rad');
         cellArray[y][x].innerHTML = '';
     }
@@ -339,7 +325,6 @@ function GetTheme() {
 function ChangeTheme(newTheme)
 {
     theme = newTheme;
-    console.log(theme);
 
     // Change all floor and wall themes
     let floors = document.getElementsByClassName('floor');
