@@ -296,10 +296,10 @@ function GrabValues()
     walkerDeleteChance = parseFloat(document.getElementById('deleteNumber').value);
 
     // Turn
-    leftTurnChance = parseFloat(document.getElementById('leftNumber').value);
-    rightTurnChance = parseFloat(document.getElementById('rightNumber').value);
-    uTurnChance = parseFloat(document.getElementById('uTurnNumber').value);
-    noTurnChance = parseFloat(document.getElementById('noTurnNumber').value);
+    leftTurnChance = parseFloat(document.getElementById('leftRange').value);
+    rightTurnChance = parseFloat(document.getElementById('rightRange').value);
+    uTurnChance = parseFloat(document.getElementById('uTurnRange').value);
+    noTurnChance = parseFloat(document.getElementById('noTurnRange').value);
 
     // Size
     bigRoomChance = parseFloat(document.getElementById('bigRoomNumber').value);
@@ -445,16 +445,12 @@ document.getElementById('deleteRange').addEventListener('input', updateValue);
 document.getElementById('deleteNumber').addEventListener('input', updateValue);
 
 document.getElementById('leftRange').addEventListener('input', updateValue);
-document.getElementById('leftNumber').addEventListener('input', updateValue);
 
 document.getElementById('rightRange').addEventListener('input', updateValue);
-document.getElementById('rightNumber').addEventListener('input', updateValue);
 
 document.getElementById('uTurnRange').addEventListener('input', updateValue);
-document.getElementById('uTurnNumber').addEventListener('input', updateValue);
 
 document.getElementById('noTurnRange').addEventListener('input', updateValue);
-document.getElementById('noTurnNumber').addEventListener('input', updateValue);
 
 document.getElementById('bigRoomRange').addEventListener('input', updateValue);
 document.getElementById('bigRoomNumber').addEventListener('input', updateValue);
@@ -466,51 +462,51 @@ function updateValue (e) {
     var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
     sibling.value = e.target.value;
 
-    leftTurnChance = parseFloat(document.getElementById('leftNumber').value);
-    rightTurnChance = parseFloat(document.getElementById('rightNumber').value);
-    uTurnChance = parseFloat(document.getElementById('uTurnNumber').value);
-    noTurnChance = parseFloat(document.getElementById('noTurnNumber').value);
+    leftTurnChance = parseFloat(document.getElementById('leftRange').value);
+    rightTurnChance = parseFloat(document.getElementById('rightRange').value);
+    uTurnChance = parseFloat(document.getElementById('uTurnRange').value);
+    noTurnChance = parseFloat(document.getElementById('noTurnRange').value);
 
     if (leftTurnChance + rightTurnChance + uTurnChance + noTurnChance != 100)
     {
-        if (noTurnChance >= 0 && e.target.name != 'noTurnChance')
+        if (noTurnChance >= 0)
         {
             noTurnChance = 100 - (leftTurnChance + rightTurnChance + uTurnChance);
             if (noTurnChance < 0)
                 noTurnChance = 0                
 
             document.getElementById('noTurnRange').value = noTurnChance;
-            document.getElementById('noTurnNumber').value = noTurnChance;
+            document.getElementById('noTurnRange').onchange();
         }
 
-        if (uTurnChance >= 0 && e.target.name != 'uTurnChance')
+        if (uTurnChance >= 0)
         {
             uTurnChance = 100 - (leftTurnChance + rightTurnChance + noTurnChance);
             if (uTurnChance < 0)
                 uTurnChance = 0
 
             document.getElementById('uTurnRange').value = uTurnChance;
-            document.getElementById('uTurnNumber').value = uTurnChance;
+            document.getElementById('uTurnRange').onchange();
         }
 
-        if (rightTurnChance >= 0 && e.target.name != 'rightTurnChance')
+        if (rightTurnChance >= 0)
         {
             rightTurnChance = 100 - (leftTurnChance + uTurnChance + noTurnChance);
             if (rightTurnChance < 0)
                 rightTurnChance = 0
 
             document.getElementById('rightRange').value = rightTurnChance;
-            document.getElementById('rightNumber').value = rightTurnChance;
+            document.getElementById('rightRange').onchange();
         }
 
-        if (leftTurnChance >= 0 && e.target.name != 'leftTurnChance')
+        if (leftTurnChance >= 0)
         {
             leftTurnChance = 100 - (uTurnChance + rightTurnChance + noTurnChance);
             if (leftTurnChance < 0)
                 leftTurnChance = 0
                 
             document.getElementById('leftRange').value = leftTurnChance;
-            document.getElementById('leftNumber').value = leftTurnChance;
+            document.getElementById('leftRange').onchange();
         }
     }
 }
