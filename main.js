@@ -81,13 +81,16 @@ function FloorGen()
     while (floorNum < maxFloor)
     {
         if (steps > 1000)
+        {
+            console.warn("Max steps reached!");
             break;
+        }
 
         //Add floors
         walkers.forEach ((currWalker) => {
             if (!cellArray[currWalker.posY][currWalker.posX].classList.contains("floor"))
             {
-                if (Math.random() < bigRoomChance)
+                if (Math.random() * 100 < bigRoomChance)
                 {
                     cellArray[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
                     floorNum++;
@@ -132,7 +135,7 @@ function FloorGen()
     
         // Chance to add walkers
         walkers.forEach ((currWalker) => {
-            if (Math.random() < walkerSpawnChance)
+            if (Math.random() * 100 < walkerSpawnChance)
             {
                 walkers.push(new Walker(currWalker.posX, currWalker.posY));
                 // Maybe limit this?
@@ -141,7 +144,7 @@ function FloorGen()
     
         // Chance to destory walkers
         walkers.forEach ((currWalker) => {
-            if (Math.random() < walkerDeleteChance && walkers.length > 1)
+            if (Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
             {
                 walkers.splice(walkers.indexOf(currWalker, 1));
 
@@ -158,18 +161,18 @@ function FloorGen()
     
         // Chance to turn
         walkers.forEach ((currWalker) => {
-            const rng = Math.random();
+            const rng = Math.random() * 100;
 
             // Find a better way maybe?
-            if (0 < rng < leftTurnChance)
+            if (0 < rng && rng < leftTurnChance)
             {
                 currWalker.dir--;
             }
-            else if (leftTurnChance < rng < rightTurnChance + leftTurnChance)
+            else if (leftTurnChance < rng && rng < rightTurnChance + leftTurnChance)
             {
                 currWalker.dir++;
             }
-            else if (rightTurnChance + leftTurnChance < rng < uTurnChance + leftTurnChance + rightTurnChance)
+            else if (rightTurnChance + leftTurnChance <  rng && rng  < uTurnChance + leftTurnChance + rightTurnChance)
             {
                 currWalker.dir += 2;
 
@@ -292,8 +295,8 @@ function GrabValues()
     // Walkers
     startingWalkers = document.getElementById('startWalkers').value;
     maxWalkers = document.getElementById('maxWalkers').value;
-    walkerSpawnChance = parseFloat(document.getElementById('spawnNumber').value);
-    walkerDeleteChance = parseFloat(document.getElementById('deleteNumber').value);
+    walkerSpawnChance = parseFloat(document.getElementById('spawnRange').value);
+    walkerDeleteChance = parseFloat(document.getElementById('deleteRange').value);
 
     // Turn
     leftTurnChance = parseFloat(document.getElementById('leftRange').value);
@@ -302,7 +305,7 @@ function GrabValues()
     noTurnChance = parseFloat(document.getElementById('noTurnRange').value);
 
     // Size
-    bigRoomChance = parseFloat(document.getElementById('bigRoomNumber').value);
+    bigRoomChance = parseFloat(document.getElementById('bigRoomRange').value);
     maxFloor = document.getElementById('maxFloor').value;
 
     // Theme
@@ -439,10 +442,8 @@ function UpdateWallValue(input) {
 // Handle range and number inputs
 // There has to be a better way
 document.getElementById('spawnRange').addEventListener('input', updateValue);
-document.getElementById('spawnNumber').addEventListener('input', updateValue);
 
 document.getElementById('deleteRange').addEventListener('input', updateValue);
-document.getElementById('deleteNumber').addEventListener('input', updateValue);
 
 document.getElementById('leftRange').addEventListener('input', updateValue);
 
@@ -453,7 +454,6 @@ document.getElementById('uTurnRange').addEventListener('input', updateValue);
 document.getElementById('noTurnRange').addEventListener('input', updateValue);
 
 document.getElementById('bigRoomRange').addEventListener('input', updateValue);
-document.getElementById('bigRoomNumber').addEventListener('input', updateValue);
 
 document.getElementById('animationRange').addEventListener('input', updateValue);
 document.getElementById('animationNumber').addEventListener('input', updateValue);
