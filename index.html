@@ -58,8 +58,8 @@
             <button onclick="Dropdown(this, 'SizeDropdown')" class="dropbtn">Size</button>
             <div id="SizeDropdown" class="dropdownTab dropdown-content">
                 <label class='dropdown-content'>Big Room Chance:
-                    <input class='dropdown-content' type="range" id="bigRoomRange" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
-                    <input class='dropdown-content' type="number" id="bigRoomNumber" name="bigRoomChance" min="0" max="1" step="0.01" value="0.5">
+                    <input class='dropdown-content' type="range" id="bigRoomRange" name="bigRoomChance" min="0" max="100" step="1" value="50" oninput="this.nextElementSibling.value = this.value + '%'">
+                    <output>50%</output>
                 </label>
 
                 <label class='dropdown-content'>Max Floor Tiles:
