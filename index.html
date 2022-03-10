@@ -20,13 +20,13 @@
                 </label>
 
                 <label class='dropdown-content'>Spawn Chance:
-                    <input class='dropdown-content' type="range" id="spawnRange" name="spawnChance" min="0" max="100" step="1" value="5">
-                    <input class='dropdown-content' type="number" id="spawnNumber" name="spawnChance" min="0" max="100" step="1" value="5">
+                    <input class='dropdown-content' type="range" id="spawnRange" name="spawnChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
+                    <output>5%</output>
                 </label>
 
                 <label class='dropdown-content'>Delete Chance:
-                    <input class='dropdown-content' type="range" id="deleteRange" name="deleteChance" min="0" max="100" step="1" value="5">
-                    <input class='dropdown-content' type="number" id="deleteNumber" name="deleteChance" min="0" max="100" step="1" value="5">
+                    <input class='dropdown-content' type="range" id="deleteRange" name="deleteChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
+                    <output>5%</output>
                 </label>
             </div>
         </div>
