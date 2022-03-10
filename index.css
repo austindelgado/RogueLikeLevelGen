@@ -44,11 +44,11 @@ label {
 }
 
 .floor {
-    border: 1px solid rgba(255, 255, 255, 0);
+    /* border: 1px solid rgba(255, 255, 255, 0); */
 }
 
 .wall {
-    border: 1px solid rgba(255, 255, 255, 0);
+    /* border: 1px solid rgba(255, 255, 255, 0); */
 }
 
 .floor.chest {
