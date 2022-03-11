@@ -143,7 +143,9 @@ async function FloorGen()
         walkers.forEach ((currWalker) => {
             if (Math.random() * 100 < walkerSpawnChance)
             {
-                walkers.push(new Walker(currWalker.posX, currWalker.posY));
+                walkers.push(new Walker(currWalker.posX, currWalker.posY, Math.floor(Math.random() * 4)));
+                cellArray[currWalker.posY][currWalker.posX].classList.add("walker");
+
                 // Maybe limit this?
             }
         });
@@ -153,6 +155,7 @@ async function FloorGen()
             if (Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
             {
                 walkers.splice(walkers.indexOf(currWalker, 1));
+                cellArray[currWalker.posY][currWalker.posX].classList.remove("walker");
 
                 // Spawn ammo
                 newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
@@ -225,7 +228,8 @@ async function FloorGen()
 
         steps++;
 
-        await timer(1000);
+        await timer(100);
+        console.log(walkers.length)
     }
 
     if (chestX != 0 || chestY != 0)
