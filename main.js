@@ -297,11 +297,26 @@ function ClearLevel()
         for (let x = 0; x < width; x++)
         {
             gridCells[y][x].className = '';
+            board[y][x] = 0;
         }
     }
 
     floorNum = 0;
     walkers = [];
+}
+
+function DrawMap()
+{
+    for (let y = 0; y < height; y++)
+    {
+        for (let x = 0; x < width; x++)
+        {
+            if (board[y][x] == 1)
+                gridCells[y][x].classList.add("floor", `${theme}Floor`);
+            else if (board[y][x] == 2)
+                gridCells[y][x].classList.add("wall", `${theme}Wall`);
+        }
+    }
 }
 
 function GrabValues()
@@ -373,6 +388,7 @@ function GenerateNewLevel()
     WalkerSetup();
     FloorGen();
     WallGen();
+    DrawMap();
 }
 
 let activeDrop;
