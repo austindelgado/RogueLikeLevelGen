@@ -221,7 +221,6 @@ async function FloorGen()
             {
                 currWalker.posX--;
             }
-
             // Add walker to current position
             cellArray[currWalker.posY][currWalker.posX].classList.add("walker");
         });
