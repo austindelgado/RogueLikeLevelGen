@@ -67,7 +67,11 @@ function WalkerSetup()
 {
     // Spawn starting walkers
     for (let i = 0; i < startingWalkers; i++)
-        walkers.push(new Walker(startingX, startingY, Math.floor(Math.random() * 4)));
+    {
+        newWalker = new Walker(startingX, startingY, Math.floor(Math.random() * 4));
+        cellArray[newWalker.posY][newWalker.posX].classList.add("walker");
+        walkers.push(newWalker);
+    }
 }
 
 async function FloorGen()
@@ -196,6 +200,9 @@ async function FloorGen()
     
         // Move walkers
         walkers.forEach ((currWalker) => {
+            //Remove walker from current positon
+            cellArray[currWalker.posY][currWalker.posX].classList.remove("walker");
+            
             if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
             {
                 currWalker.posY++;
@@ -212,6 +219,8 @@ async function FloorGen()
             {
                 currWalker.posX--;
             }
+            // Add walker to current position
+            cellArray[currWalker.posY][currWalker.posX].classList.add("walker");
         });
 
         steps++;
