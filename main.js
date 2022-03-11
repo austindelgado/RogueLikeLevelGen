@@ -145,8 +145,7 @@ async function FloorGen()
             {
                 walkers.push(new Walker(currWalker.posX, currWalker.posY, Math.floor(Math.random() * 4)));
                 cellArray[currWalker.posY][currWalker.posX].classList.add("walker");
-                break;
-                // Maybe limit this?
+                return;
             }
         });
     
@@ -222,6 +221,7 @@ async function FloorGen()
             {
                 currWalker.posX--;
             }
+
             // Add walker to current position
             cellArray[currWalker.posY][currWalker.posX].classList.add("walker");
         });
