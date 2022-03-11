@@ -61,6 +61,8 @@ let floorNum = 0;
 // Theme
 let theme;
 
+const timer = ms => new Promise(res => setTimeout(res, ms))
+
 function WalkerSetup() 
 {
     // Spawn starting walkers
@@ -68,7 +70,7 @@ function WalkerSetup()
         walkers.push(new Walker(startingX, startingY, Math.floor(Math.random() * 4)));
 }
 
-function FloorGen()
+async function FloorGen()
 {
     let chestX, chestY, chestMax;
     chestX = chestY = chestMax = 0;
@@ -213,6 +215,8 @@ function FloorGen()
         });
 
         steps++;
+
+        await timer(1000);
     }
 
     if (chestX != 0 || chestY != 0)
@@ -223,6 +227,8 @@ function FloorGen()
 
     if (radX != 0 || radY != 0)
         SpawnObject(radX, radY, 2);
+
+    WallGen(); 
 }
 
 function SpawnObject(x, y, obj) 
@@ -358,7 +364,6 @@ function GenerateNewLevel()
     GrabValues();
     WalkerSetup();
     FloorGen();
-    WallGen();
 }
 
 let activeDrop;
@@ -411,7 +416,6 @@ BoardSetup(height, width);
 GrabValues();
 WalkerSetup();
 FloorGen();
-WallGen();
 
 document.getElementById("generate").onclick = GenerateNewLevel;
 
