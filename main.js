@@ -29,6 +29,8 @@ function BoardSetup(height, width)
     
         for (let x = 0; x < width; x++)
         {
+            board[y][x] = 0;
+
             // New col in row
             let id = y * width + x;
             let cell = document.createElement('td');
@@ -76,7 +78,7 @@ function WalkerSetup()
     }
 }
 
-async function FloorGen()
+function FloorGen()
 {
     let chestX, chestY, chestMax;
     chestX = chestY = chestMax = 0;
@@ -96,34 +98,38 @@ async function FloorGen()
 
         //Add floors
         walkers.forEach ((currWalker) => {
-            if (!gridCells[currWalker.posY][currWalker.posX].classList.contains("floor"))
+            console.log(board[currWalker.posY][currWalker.posX]);
+            if (board[currWalker.posY][currWalker.posX] == 0)
             {
                 if (Math.random() * 100 < bigRoomChance)
                 {
-                    gridCells[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
+                    console.log("Big room Added!");
+                    board[currWalker.posY][currWalker.posX] = 1;
                     floorNum++;
 
                     if (currWalker.posY + 1 < height - 1) 
                     {
-                        gridCells[currWalker.posY + 1][currWalker.posX].classList.add("floor", `${theme}Floor`);
+                        board[currWalker.posY + 1][currWalker.posX] = 1;
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1)
                     {
-                        gridCells[currWalker.posY][currWalker.posX + 1].classList.add("floor", `${theme}Floor`);
+                        board[currWalker.posY][currWalker.posX + 1] = 1;
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1 && currWalker.posY + 1 < height - 1)
                     {
-                        gridCells[currWalker.posY + 1][currWalker.posX + 1].classList.add("floor", `${theme}Floor`);
+                        board[currWalker.posY + 1][currWalker.posX + 1] = 1;
                         floorNum++;
                     }
                 }
                 else
                 {
-                    gridCells[currWalker.posY][currWalker.posX].classList.add("floor", `${theme}Floor`);
+                    console.log("Small room Added!");
+                    
+                    board[currWalker.posY][currWalker.posX] = 1;
                     floorNum++;
                 }
             }
@@ -146,7 +152,6 @@ async function FloorGen()
             if (Math.random() * 100 < walkerSpawnChance)
             {
                 walkers.push(new Walker(currWalker.posX, currWalker.posY, Math.floor(Math.random() * 4)));
-                gridCells[currWalker.posY][currWalker.posX].classList.add("walker");
             }
         });
     
@@ -155,7 +160,6 @@ async function FloorGen()
             if (Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
             {
                 walkers.splice(walkers.indexOf(currWalker, 1));
-                gridCells[currWalker.posY][currWalker.posX].classList.remove("walker");
 
                 // Spawn ammo
                 newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
@@ -204,9 +208,6 @@ async function FloorGen()
     
         // Move walkers
         walkers.forEach ((currWalker) => {
-            //Remove walker from current positon
-            gridCells[currWalker.posY][currWalker.posX].classList.remove("walker");
-            
             if (currWalker.dir == 0 && currWalker.posY + 1 < height - 1) 
             {
                 currWalker.posY++;
@@ -223,20 +224,10 @@ async function FloorGen()
             {
                 currWalker.posX--;
             }
-            // Add walker to current position
-            gridCells[currWalker.posY][currWalker.posX].classList.add("walker");
         });
 
         steps++;
-
-        await timer(100);
-        console.log(walkers.length)
     }
-
-    walkers.forEach ((currWalker) => {
-        //Remove walker from current positon
-        gridCells[currWalker.posY][currWalker.posX].classList.remove("walker");
-    });
 
     if (chestX != 0 || chestY != 0)
         SpawnObject(chestX, chestY, 0);
@@ -246,8 +237,6 @@ async function FloorGen()
 
     if (radX != 0 || radY != 0)
         SpawnObject(radX, radY, 2);
-
-    WallGen(); 
 }
 
 function SpawnObject(x, y, obj) 
@@ -277,23 +266,23 @@ function WallGen()
     {
         for (let x = 0; x < width; x++)
         {
-            if (gridCells[y][x].classList.contains("floor"))
+            if (board[y][x] == 1)
             {
-                if (y + 1 < height && !gridCells[y + 1][x].classList.contains("floor"))
+                if (y + 1 < height && !board[y + 1][x] == 1)
                 {
-                    gridCells[y + 1][x].classList.add("wall", `${theme}Wall`);
+                    board[y + 1][x] = 2;
                 }
-                if (x + 1 < width && !gridCells[y][x + 1].classList.contains("floor"))
+                if (x + 1 < width && !board[y][x + 1] == 1)
                 {
-                    gridCells[y][x + 1].classList.add("wall", `${theme}Wall`);
+                    board[y][x + 1] = 2;
                 }
-                if (y - 1 > -1 && !gridCells[y - 1][x].classList.contains("floor"))
+                if (y - 1 > -1 && !board[y - 1][x] == 1)
                 {
-                    gridCells[y - 1][x].classList.add("wall", `${theme}Wall`);
+                    board[y - 1][x] = 2;
                 }
-                if (x - 1 > -1 && !gridCells[y][x - 1].classList.contains("floor"))
+                if (x - 1 > -1 && !board[y][x - 1] == 1)
                 {
-                    gridCells[y][x - 1].classList.add("wall", `${theme}Wall`);
+                    board[y][x - 1] = 2;
                 }
             }
         }
@@ -383,6 +372,7 @@ function GenerateNewLevel()
     GrabValues();
     WalkerSetup();
     FloorGen();
+    WallGen();
 }
 
 let activeDrop;
