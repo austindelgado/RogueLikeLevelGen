@@ -43,6 +43,9 @@ function BoardSetup(height, width)
     }
 }
 
+// Store moves at each step for animating
+let moves = [];
+
 // Walker
 let walkers = [];
 let startingY = Math.round(height / 2);
@@ -78,6 +81,12 @@ function WalkerSetup()
     }
 }
 
+function Move(x, y, type) {
+    this.x = x;
+    this.y = y;
+    this.type = type; // floor, wall, walker, chest, ammo, rad
+}
+
 function FloorGen()
 {
     let chestX, chestY, chestMax;
@@ -96,36 +105,45 @@ function FloorGen()
             break;
         }
 
+        let move = [] // Moves for this loop
+
         //Add floors
         walkers.forEach ((currWalker) => {
+            move.push(new Move(currWalker.posX, currWalker.posY, 3));
+
             if (board[currWalker.posY][currWalker.posX] == 0)
             {
                 if (Math.random() * 100 < bigRoomChance)
                 {
                     board[currWalker.posY][currWalker.posX] = 1;
+                    move.push(new Move(currWalker.posX, currWalker.posY, 1));
                     floorNum++;
 
                     if (currWalker.posY + 1 < height - 1) 
                     {
                         board[currWalker.posY + 1][currWalker.posX] = 1;
+                        move.push(new Move(currWalker.posX + 1, currWalker.posY, 1));
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1)
                     {
                         board[currWalker.posY][currWalker.posX + 1] = 1;
+                        move.push(new Move(currWalker.posX, currWalker.posY + 1, 1));
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1 && currWalker.posY + 1 < height - 1)
                     {
                         board[currWalker.posY + 1][currWalker.posX + 1] = 1;
+                        move.push(new Move(currWalker.posX + 1, currWalker.posY + 1, 1));
                         floorNum++;
                     }
                 }
                 else
                 {
                     board[currWalker.posY][currWalker.posX] = 1;
+                    move.push(new Move(currWalker.posX, currWalker.posY, 1));
                     floorNum++;
                 }
             }
@@ -151,7 +169,7 @@ function FloorGen()
             }
         });
         
-        // Chance to destory walkers
+        // Chance to destroy walkers
         if ((maxWalkers / walkers.length) * Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
         {
             currWalker = walkers[Math.floor(Math.random() * walkers.length)]
@@ -166,7 +184,6 @@ function FloorGen()
                 ammoY = currWalker.posY;
             }
         }
-
     
         // Chance to turn
         walkers.forEach ((currWalker) => {
@@ -181,7 +198,7 @@ function FloorGen()
             {
                 currWalker.dir++;
             }
-            else if (rightTurnChance + leftTurnChance <  rng && rng  < uTurnChance + leftTurnChance + rightTurnChance)
+            else if (rightTurnChance + leftTurnChance < rng && rng < uTurnChance + leftTurnChance + rightTurnChance)
             {
                 currWalker.dir += 2;
 
@@ -223,6 +240,8 @@ function FloorGen()
 
         steps++;
         console.log(walkers.length);
+        console.log(move);
+        return;
     }
 
     if (chestX != 0 || chestY != 0)
@@ -437,6 +456,8 @@ BoardSetup(height, width);
 GrabValues();
 WalkerSetup();
 FloorGen();
+WallGen();
+DrawMap();
 
 document.getElementById("generate").onclick = GenerateNewLevel;
 
