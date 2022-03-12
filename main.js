@@ -98,12 +98,10 @@ function FloorGen()
 
         //Add floors
         walkers.forEach ((currWalker) => {
-            console.log(board[currWalker.posY][currWalker.posX]);
             if (board[currWalker.posY][currWalker.posX] == 0)
             {
                 if (Math.random() * 100 < bigRoomChance)
                 {
-                    console.log("Big room Added!");
                     board[currWalker.posY][currWalker.posX] = 1;
                     floorNum++;
 
@@ -127,8 +125,6 @@ function FloorGen()
                 }
                 else
                 {
-                    console.log("Small room Added!");
-                    
                     board[currWalker.posY][currWalker.posX] = 1;
                     floorNum++;
                 }
@@ -149,29 +145,28 @@ function FloorGen()
     
         // Chance to add walkers
         walkers.forEach ((currWalker) => {
-            if (Math.random() * 100 < walkerSpawnChance)
+            if ((walkers.length / maxWalkers) * Math.random() * 100 < walkerSpawnChance && walkers.length < maxWalkers)
             {
                 walkers.push(new Walker(currWalker.posX, currWalker.posY, Math.floor(Math.random() * 4)));
             }
         });
-    
+        
         // Chance to destory walkers
-        walkers.forEach ((currWalker) => {
-            if (Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
-            {
-                walkers.splice(walkers.indexOf(currWalker, 1));
+        if ((maxWalkers / walkers.length) * Math.random() * 100 < walkerDeleteChance && walkers.length > 1)
+        {
+            currWalker = walkers[Math.floor(Math.random() * walkers.length)]
+            walkers.splice(walkers.indexOf(currWalker, 1));
 
-                // Spawn ammo
-                newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
-                if (newAmmo > ammoMax && currWalker.posX != chestX && currWalker.posX != chestY && currWalker.posX != radX && currWalker.posY != radY)
-                {
-                    ammoMax = newAmmo;
-                    ammoX = currWalker.posX;
-                    ammoY = currWalker.posY;
-                }
-                return; // Only destroy one walker per step max
+            // Spawn ammo
+            newAmmo = GetDistance(startingX, startingY, currWalker.posX, currWalker.posY);
+            if (newAmmo > ammoMax && currWalker.posX != chestX && currWalker.posX != chestY && currWalker.posX != radX && currWalker.posY != radY)
+            {
+                ammoMax = newAmmo;
+                ammoX = currWalker.posX;
+                ammoY = currWalker.posY;
             }
-        });
+        }
+
     
         // Chance to turn
         walkers.forEach ((currWalker) => {
@@ -227,6 +222,7 @@ function FloorGen()
         });
 
         steps++;
+        console.log(walkers.length);
     }
 
     if (chestX != 0 || chestY != 0)
