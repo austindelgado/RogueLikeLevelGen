@@ -242,16 +242,14 @@ function FloorGen()
         moves.push(move);
     }
 
-    console.log(moves);
+    // if (chestX != 0 || chestY != 0)
+    //     SpawnObject(chestX, chestY, 0);
 
-    if (chestX != 0 || chestY != 0)
-        SpawnObject(chestX, chestY, 0);
+    // if (ammoX != 0 || ammoY != 0)
+    //     SpawnObject(ammoX, ammoY, 1);
 
-    if (ammoX != 0 || ammoY != 0)
-        SpawnObject(ammoX, ammoY, 1);
-
-    if (radX != 0 || radY != 0)
-        SpawnObject(radX, radY, 2);
+    // if (radX != 0 || radY != 0)
+    //     SpawnObject(radX, radY, 2);
 }
 
 function SpawnObject(x, y, obj) 
@@ -318,20 +316,54 @@ function ClearLevel()
 
     floorNum = 0;
     walkers = [];
+    moves = [];
 }
 
 function DrawMap()
 {
-    for (let y = 0; y < height; y++)
-    {
-        for (let x = 0; x < width; x++)
-        {
-            if (board[y][x] == 1)
-                gridCells[y][x].classList.add("floor", `${theme}Floor`);
-            else if (board[y][x] == 2)
-                gridCells[y][x].classList.add("wall", `${theme}Wall`);
-        }
-    }
+    timeoutTime = 500; // Scale this based off user input
+
+    prevWalker = []
+    moves.forEach((move) => {
+        // Apply each step in the move
+        setTimeout(() => {
+            prevWalker.forEach((action) => {
+                gridCells[action.y][action.x].classList.remove("walker");
+            })
+            
+            move.forEach((action) => {
+                if (action.type == 'floor')
+                {
+                    gridCells[action.y][action.x].classList.add("floor", `${theme}Floor`);
+                }
+                else if (action.type == 'wall')
+                {
+                    gridCells[action.y][action.x].classList.add("wall", `${theme}Wall`);
+                }
+                else if (action.type == 'walker')
+                {
+                    gridCells[action.y][action.x].classList.add("walker");
+                    prevWalker.push(action);
+                }
+
+                // Change to switch and add chest, ammo, rad
+            });
+
+        }, timeoutTime);
+        timeoutTime += 500;
+        prevWalker = []
+    });
+
+    // for (let y = 0; y < height; y++)
+    // {
+    //     for (let x = 0; x < width; x++)
+    //     {
+    //         if (board[y][x] == 1)
+    //             gridCells[y][x].classList.add("floor", `${theme}Floor`);
+    //         else if (board[y][x] == 2)
+    //             gridCells[y][x].classList.add("wall", `${theme}Wall`);
+    //     }
+    // }
 }
 
 function GrabValues()
