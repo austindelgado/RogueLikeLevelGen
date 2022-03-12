@@ -109,41 +109,41 @@ function FloorGen()
 
         //Add floors
         walkers.forEach ((currWalker) => {
-            move.push(new Move(currWalker.posX, currWalker.posY, 3));
+            move.push(new Move(currWalker.posX, currWalker.posY, 'walker'));
 
             if (board[currWalker.posY][currWalker.posX] == 0)
             {
                 if (Math.random() * 100 < bigRoomChance)
                 {
                     board[currWalker.posY][currWalker.posX] = 1;
-                    move.push(new Move(currWalker.posX, currWalker.posY, 1));
+                    move.push(new Move(currWalker.posX, currWalker.posY, 'floor'));
                     floorNum++;
 
                     if (currWalker.posY + 1 < height - 1) 
                     {
                         board[currWalker.posY + 1][currWalker.posX] = 1;
-                        move.push(new Move(currWalker.posX + 1, currWalker.posY, 1));
+                        move.push(new Move(currWalker.posX + 1, currWalker.posY, 'floor'));
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1)
                     {
                         board[currWalker.posY][currWalker.posX + 1] = 1;
-                        move.push(new Move(currWalker.posX, currWalker.posY + 1, 1));
+                        move.push(new Move(currWalker.posX, currWalker.posY + 1, 'floor'));
                         floorNum++;
                     }
                     
                     if (currWalker.posX + 1 < width - 1 && currWalker.posY + 1 < height - 1)
                     {
                         board[currWalker.posY + 1][currWalker.posX + 1] = 1;
-                        move.push(new Move(currWalker.posX + 1, currWalker.posY + 1, 1));
+                        move.push(new Move(currWalker.posX + 1, currWalker.posY + 1, 'floor'));
                         floorNum++;
                     }
                 }
                 else
                 {
                     board[currWalker.posY][currWalker.posX] = 1;
-                    move.push(new Move(currWalker.posX, currWalker.posY, 1));
+                    move.push(new Move(currWalker.posX, currWalker.posY, 'floor'));
                     floorNum++;
                 }
             }
@@ -239,10 +239,10 @@ function FloorGen()
         });
 
         steps++;
-        console.log(walkers.length);
-        console.log(move);
-        return;
+        moves.push(move);
     }
+
+    console.log(moves);
 
     if (chestX != 0 || chestY != 0)
         SpawnObject(chestX, chestY, 0);
