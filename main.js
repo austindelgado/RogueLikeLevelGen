@@ -279,25 +279,32 @@ function WallGen()
     {
         for (let x = 0; x < width; x++)
         {
+            move = [];
             if (board[y][x] == 1)
             {
                 if (y + 1 < height && !board[y + 1][x] == 1)
                 {
                     board[y + 1][x] = 2;
+                    move.push(new Move(x, y + 1, 'wall'));
                 }
                 if (x + 1 < width && !board[y][x + 1] == 1)
                 {
                     board[y][x + 1] = 2;
+                    move.push(new Move(x + 1, y, 'wall'));
                 }
                 if (y - 1 > -1 && !board[y - 1][x] == 1)
                 {
                     board[y - 1][x] = 2;
+                    move.push(new Move(x, y - 1, 'wall'));
                 }
                 if (x - 1 > -1 && !board[y][x - 1] == 1)
                 {
                     board[y][x - 1] = 2;
+                    move.push(new Move(x - 1, y, 'wall'));
                 }
             }
+            if (move.length != 0)
+                moves.push(move);
         }
     }
 }
@@ -321,6 +328,7 @@ function ClearLevel()
 
 function DrawMap()
 {
+    console.log(moves);
     timeoutTime = 500; // Scale this based off user input
 
     prevWalker = []
@@ -353,6 +361,12 @@ function DrawMap()
         timeoutTime += 500;
         prevWalker = []
     });
+
+    setTimeout(() => {
+        prevWalker.forEach((action) => {
+            gridCells[action.y][action.x].classList.remove("walker");
+        })
+    }, timeoutTime);
 
     // for (let y = 0; y < height; y++)
     // {
