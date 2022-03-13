@@ -324,17 +324,21 @@ function ClearLevel()
     floorNum = 0;
     walkers = [];
     moves = [];
+
+    for (var i=0; i < timeouts.length; i++) 
+        clearTimeout(timeouts[i]);
 }
 
+var timeouts = []; // Used to store timeouts
 function DrawMap()
 {
     console.log(moves);
-    timeoutTime = 500; // Scale this based off user input
+    timeoutTime = animationSpeed * 1000; // Scale this based off user input
 
     prevWalker = []
     moves.forEach((move) => {
         // Apply each step in the move
-        setTimeout(() => {
+        timeouts.push(setTimeout(() => {
             prevWalker.forEach((action) => {
                 gridCells[action.y][action.x].classList.remove("walker");
             })
@@ -357,8 +361,8 @@ function DrawMap()
                 // Change to switch and add chest, ammo, rad
             });
 
-        }, timeoutTime);
-        timeoutTime += 500;
+        }, timeoutTime));
+        timeoutTime += animationSpeed * 1000;
         prevWalker = []
     });
 
@@ -400,7 +404,9 @@ function GrabValues()
 
     // Theme
     GetTheme();
+
     // Animation
+    animationSpeed = parseFloat(document.getElementById('animationRange').value);
 
     if (maxFloor > height * width)
         maxFloor = height * width;
@@ -546,9 +552,6 @@ document.getElementById('uTurnRange').addEventListener('input', updateValue);
 document.getElementById('noTurnRange').addEventListener('input', updateValue);
 
 document.getElementById('bigRoomRange').addEventListener('input', updateValue);
-
-document.getElementById('animationRange').addEventListener('input', updateValue);
-document.getElementById('animationNumber').addEventListener('input', updateValue);
 
 function updateValue (e) {
     var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
