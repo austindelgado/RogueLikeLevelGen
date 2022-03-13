@@ -537,21 +537,11 @@ function UpdateWallValue(input) {
   ChangeStyle('#custom', 'border-style', 'solid');
 }
 
-// Handle range and number inputs
-// There has to be a better way
-document.getElementById('spawnRange').addEventListener('input', updateValue);
-
-document.getElementById('deleteRange').addEventListener('input', updateValue);
 
 document.getElementById('leftRange').addEventListener('input', updateValue);
-
 document.getElementById('rightRange').addEventListener('input', updateValue);
-
 document.getElementById('uTurnRange').addEventListener('input', updateValue);
-
 document.getElementById('noTurnRange').addEventListener('input', updateValue);
-
-document.getElementById('bigRoomRange').addEventListener('input', updateValue);
 
 function updateValue (e) {
     var sibling = e.target.previousElementSibling || e.target.nextElementSibling;
