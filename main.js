@@ -336,7 +336,12 @@ function DrawMap()
     timeoutTime = animationSpeed * 1000; // Scale this based off user input
 
     prevWalker = []
+    walls = false;
     moves.forEach((move) => {
+        // Check if we're doing walls to speed it up
+        if (!walls && move[0].type == 'wall')
+            walls = true;
+
         // Apply each step in the move
         timeouts.push(setTimeout(() => {
             prevWalker.forEach((action) => {
@@ -360,17 +365,15 @@ function DrawMap()
 
                 // Change to switch and add chest, ammo, rad
             });
-
         }, timeoutTime));
-        timeoutTime += animationSpeed * 1000;
-        prevWalker = []
-    });
 
-    setTimeout(() => {
-        prevWalker.forEach((action) => {
-            gridCells[action.y][action.x].classList.remove("walker");
-        })
-    }, timeoutTime);
+        if (walls)
+            timeoutTime += animationSpeed * 250;
+        else
+            timeoutTime += animationSpeed * 1000;
+
+        prevWalker = [];
+    });
 
     // for (let y = 0; y < height; y++)
     // {
