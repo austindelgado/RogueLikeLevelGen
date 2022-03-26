@@ -1,4 +1,6 @@
 const grid = document.getElementById('grid');
+const main = document.getElementById('main');
+const nav = document.getElementById('navbar');
 
 // Please organize and clean up all X and Y
 function Walker(x, y, dir) {
@@ -8,8 +10,8 @@ function Walker(x, y, dir) {
 }
 
 // Find a way to handle dynamic resizing
-let height = Math.floor((document.documentElement.clientHeight) / 28);
-let width = Math.floor(document.documentElement.clientWidth / 25);
+let height = Math.floor(main.clientHeight / 24.25);
+let width = Math.floor(main.clientWidth / 24.25);
 
 // Create grid based off screen size
 let gridCells // Used for actual grid object

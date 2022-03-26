@@ -31,11 +31,16 @@ body {
     margin-top: auto;
 }
 
+main {
+    display: grid;
+    margin-left: 6rem;
+    place-items: center;
+    height: 100%;
+    width: calc(100% - 6rem);
+}
+
 table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 1rem;
     border-spacing: 0;
     border-collapse: collapse;
     border: 1px solid rgb(0, 0, 0);
@@ -48,13 +53,11 @@ button {
 }
 
 tbody {
-    display: table-row-group;
-    vertical-align: middle;
+    display: flex;
 }
 
 tr {
-    display: table-row;
-    vertical-align: inherit;
+    display: flex;
     border-color: inherit;
 }
 
