@@ -4,131 +4,140 @@
 </head>
 
 <body>
-    <header>
-        <h3>
-            RogueLike Level Gen
-        </h3>
-        <div id="walkerDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'WalkerDropdown')" class="dropbtn">Walkers</button>
-            <div id="WalkerDropdown" class="dropdownTab dropdown-content">
-                <label class='dropdown-content'>Starting Walkers:
-                    <input class='dropdown-content' type="number" id="startWalkers" name="startWalkers" min="1" max="100" value="1">
-                </label>
-
-                <label class='dropdown-content'>Max Walkers:
-                    <input class='dropdown-content' type="number" id="maxWalkers" name="maxWalkers" min="1" max="100" value="3">
-                </label>
-
-                <label class='dropdown-content'>Spawn Chance:
-                    <input class='dropdown-content' type="range" id="spawnRange" name="spawnChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
-                    <output>5%</output>
-                </label>
-
-                <label class='dropdown-content'>Delete Chance:
-                    <input class='dropdown-content' type="range" id="deleteRange" name="deleteChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
-                    <output>5%</output>
-                </label>
-            </div>
-        </div>
-        <div id="turnDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'TurnDropdown')" class="dropbtn">Turn</button>
-            <div id="TurnDropdown" class="dropdownTab dropdown-content">
-                <label class='dropdown-content' >Left Turn Chance:
-                    <input class='dropdown-content' type="range" id="leftRange" name="leftTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
-                    <output>20%</output>
-                </label>
-
-                <label class='dropdown-content' >Right Turn Chance:
-                    <input class='dropdown-content' type="range" id="rightRange" name="rightTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
-                    <output>20%</output>
-                </label>
-
-                <label class='dropdown-content' >180 Turn Chance:
-                    <input class='dropdown-content' type="range" id="uTurnRange" name="uTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
-                    <output>20%</output>
-                </label>
-
-                <label class='dropdown-content' >No Turn Chance:
-                    <input class='dropdown-content' type="range" id="noTurnRange" name="noTurnChance" min="0" max="100" step="1" value="40" onchange="this.nextElementSibling.value = this.value + '%'">
-                    <output>40%</output>
-                </label>
-            </div>
-        </div>
-        <div id="sizeDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'SizeDropdown')" class="dropbtn">Size</button>
-            <div id="SizeDropdown" class="dropdownTab dropdown-content">
-                <label class='dropdown-content'>Big Room Chance:
-                    <input class='dropdown-content' type="range" id="bigRoomRange" name="bigRoomChance" min="0" max="100" step="1" value="50" oninput="this.nextElementSibling.value = this.value + '%'">
-                    <output>50%</output>
-                </label>
-
-                <label class='dropdown-content'>Max Floor Tiles:
-                    <input class='dropdown-content' type="number" id="maxFloor" name="maxFloor" min="0" max="10000" step="1" value="200">
-                </label>
-            </div>
-        </div>
-        <div id="themeDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'ThemeDropdown')" class="dropbtn">Theme</button>
-            <div id="ThemeDropdown" class="dropdownTab dropdown-content">
-                <div class='theme dropdown-content' id="desert">               
-                    <input class='dropdown-content' type="radio" id="desert" value="desert" name="theme" onClick="ChangeTheme('desert')" checked>
-                    <label class='dropdown-content' for="desert">Desert</label>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <h3>
+                    RogueLike Level Gen
+                </h3>
+            </li>    
+            <li id="walkerDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'WalkerDropdown')" class="dropbtn">Walkers</button>
+                <div id="WalkerDropdown" class="dropdownTab dropdown-content">
+                    <label class='dropdown-content'>Starting Walkers:
+                        <input class='dropdown-content' type="number" id="startWalkers" name="startWalkers" min="1" max="100" value="1">
+                    </label>
+    
+                    <label class='dropdown-content'>Max Walkers:
+                        <input class='dropdown-content' type="number" id="maxWalkers" name="maxWalkers" min="1" max="100" value="3">
+                    </label>
+    
+                    <label class='dropdown-content'>Spawn Chance:
+                        <input class='dropdown-content' type="range" id="spawnRange" name="spawnChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
+                        <output>5%</output>
+                    </label>
+    
+                    <label class='dropdown-content'>Delete Chance:
+                        <input class='dropdown-content' type="range" id="deleteRange" name="deleteChance" min="0" max="100" step="1" value="5" oninput="this.nextElementSibling.value = this.value + '%'">
+                        <output>5%</output>
+                    </label>
                 </div>
-                <div class='theme dropdown-content' id="sewers">
-                    <input class='dropdown-content' type="radio" id="sewers" value="sewers" name="theme" onClick="ChangeTheme('sewers')">
-                    <label class='dropdown-content' for="sewers">Sewers</label>
-                </div>
-                <div class='theme dropdown-content' id="scrapyard">
-                    <input class='dropdown-content' type="radio" id="scrapyard" value="scrapyard" name="theme" onClick="ChangeTheme('scrapyard')">
-                    <label class='dropdown-content' for="scrapyard">Scrapyard</label>
-                </div>
-                <div class='theme dropdown-content' id="crystal">
-                    <input class='dropdown-content' type="radio" id="crystal" value="crystal" name="theme" onClick="ChangeTheme('crystal')">
-                    <label class='dropdown-content' for="crystal">Crystal Caves</label>
-                </div>
-                <div class='theme dropdown-content' id="frozen">
-                    <input class='dropdown-content' type="radio" id="frozen" value="frozen" name="theme" onClick="ChangeTheme('frozen')">
-                    <label class='dropdown-content' for="frozen">Frozen City</label>
-                </div>
-                <div class='theme dropdown-content' id="labs">
-                    <input class='dropdown-content' type="radio" id="labs" value="labs" name="theme" onClick="ChangeTheme('labs')">
-                    <label class='dropdown-content' for="labs">Labs</label>
-                </div>
-                <div class='theme dropdown-content' id="palace">
-                    <input class='dropdown-content' type="radio" id="palace" value="palace" name="theme" onClick="ChangeTheme('palace')">
-                    <label class='dropdown-content' for="palace">The Palace</label>
-                </div>
-                <div class='theme dropdown-content' id="custom">
-                    <input class='dropdown-content' type="radio" id="custom" value="custom" name="theme" onClick="ChangeTheme('custom')">
-                    <label class='dropdown-content' for="custom">Custom</label>
-                        <div class='pickers dropdown-content'>
-                            <label class='picker dropdown-content' for="floor">Floor:</label>
-                            <input class='dropdown-content' type="color" id="floorPicker" name="floor" value="#9be80e">
-                            <label class='picker dropdown-content' for="wall">Wall:</label>
-                            <input class='dropdown-content' type="color" id="wallPicker" name="wall" value="#ffffff">
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div id="animationDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'AnimationDropdown')" class="dropbtn">Animation</button>
-            <div id="AnimationDropdown" class="dropdownTab dropdown-content">
-                <label class='dropdown-content'>Speed:
-                    <input class='dropdown-content' type="range" id="animationRange" min="0" max="1" step=".1" value=".2" oninput="this.nextElementSibling.value = this.value + ' second per step'">
-                    <output>.2 second per step<output>
-                </label>
-            </div>
-        </div>
-        <div id="aboutDrop" class="dropdown">
-            <button onclick="Dropdown(this, 'AboutDropdown')" class="dropbtn">About</button>
-            <div id="AboutDropdown" class="dropdownTab dropdown-content">
-                <p class="about dropdown-content">This is placeholder text. Don't forget to fill this out.</p>
-            </div>
-        </div>
-        <button type="button" id="generate">Generate</button>  
-    </header>
+            </li>
+            <li id="turnDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'TurnDropdown')" class="dropbtn">Turn</button>
+                <div id="TurnDropdown" class="dropdownTab dropdown-content">
+                    <label class='dropdown-content' >Left Turn Chance:
+                        <input class='dropdown-content' type="range" id="leftRange" name="leftTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
+                        <output>20%</output>
+                    </label>
 
-    <table id="grid"></table>
+                    <label class='dropdown-content' >Right Turn Chance:
+                        <input class='dropdown-content' type="range" id="rightRange" name="rightTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
+                        <output>20%</output>
+                    </label>
+
+                    <label class='dropdown-content' >180 Turn Chance:
+                        <input class='dropdown-content' type="range" id="uTurnRange" name="uTurnChance" min="0" max="100" step="1" value="20" onchange="this.nextElementSibling.value = this.value + '%'">
+                        <output>20%</output>
+                    </label>
+
+                    <label class='dropdown-content' >No Turn Chance:
+                        <input class='dropdown-content' type="range" id="noTurnRange" name="noTurnChance" min="0" max="100" step="1" value="40" onchange="this.nextElementSibling.value = this.value + '%'">
+                        <output>40%</output>
+                    </label>
+                </div>
+            </li>
+            <li id="sizeDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'SizeDropdown')" class="dropbtn">Size</button>
+                <div id="SizeDropdown" class="dropdownTab dropdown-content">
+                    <label class='dropdown-content'>Big Room Chance:
+                        <input class='dropdown-content' type="range" id="bigRoomRange" name="bigRoomChance" min="0" max="100" step="1" value="50" oninput="this.nextElementSibling.value = this.value + '%'">
+                        <output>50%</output>
+                    </label>
+
+                    <label class='dropdown-content'>Max Floor Tiles:
+                        <input class='dropdown-content' type="number" id="maxFloor" name="maxFloor" min="0" max="10000" step="1" value="200">
+                    </label>
+                </div>
+            </li>
+            <li id="themeDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'ThemeDropdown')" class="dropbtn">Theme</button>
+                <div id="ThemeDropdown" class="dropdownTab dropdown-content">
+                    <div class='theme dropdown-content' id="desert">               
+                        <input class='dropdown-content' type="radio" id="desert" value="desert" name="theme" onClick="ChangeTheme('desert')" checked>
+                        <label class='dropdown-content' for="desert">Desert</label>
+                    </div>
+                    <div class='theme dropdown-content' id="sewers">
+                        <input class='dropdown-content' type="radio" id="sewers" value="sewers" name="theme" onClick="ChangeTheme('sewers')">
+                        <label class='dropdown-content' for="sewers">Sewers</label>
+                    </div>
+                    <div class='theme dropdown-content' id="scrapyard">
+                        <input class='dropdown-content' type="radio" id="scrapyard" value="scrapyard" name="theme" onClick="ChangeTheme('scrapyard')">
+                        <label class='dropdown-content' for="scrapyard">Scrapyard</label>
+                    </div>
+                    <div class='theme dropdown-content' id="crystal">
+                        <input class='dropdown-content' type="radio" id="crystal" value="crystal" name="theme" onClick="ChangeTheme('crystal')">
+                        <label class='dropdown-content' for="crystal">Crystal Caves</label>
+                    </div>
+                    <div class='theme dropdown-content' id="frozen">
+                        <input class='dropdown-content' type="radio" id="frozen" value="frozen" name="theme" onClick="ChangeTheme('frozen')">
+                        <label class='dropdown-content' for="frozen">Frozen City</label>
+                    </div>
+                    <div class='theme dropdown-content' id="labs">
+                        <input class='dropdown-content' type="radio" id="labs" value="labs" name="theme" onClick="ChangeTheme('labs')">
+                        <label class='dropdown-content' for="labs">Labs</label>
+                    </div>
+                    <div class='theme dropdown-content' id="palace">
+                        <input class='dropdown-content' type="radio" id="palace" value="palace" name="theme" onClick="ChangeTheme('palace')">
+                        <label class='dropdown-content' for="palace">The Palace</label>
+                    </div>
+                    <div class='theme dropdown-content' id="custom">
+                        <input class='dropdown-content' type="radio" id="custom" value="custom" name="theme" onClick="ChangeTheme('custom')">
+                        <label class='dropdown-content' for="custom">Custom</label>
+                            <div class='pickers dropdown-content'>
+                                <label class='picker dropdown-content' for="floor">Floor:</label>
+                                <input class='dropdown-content' type="color" id="floorPicker" name="floor" value="#9be80e">
+                                <label class='picker dropdown-content' for="wall">Wall:</label>
+                                <input class='dropdown-content' type="color" id="wallPicker" name="wall" value="#ffffff">
+                            </div>
+                    </div>
+                </div>
+            </li>
+            <li id="animationDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'AnimationDropdown')" class="dropbtn">Animation</button>
+                <div id="AnimationDropdown" class="dropdownTab dropdown-content">
+                    <label class='dropdown-content'>Speed:
+                        <input class='dropdown-content' type="range" id="animationRange" min="0" max="1" step=".1" value=".2" oninput="this.nextElementSibling.value = this.value + ' second per step'">
+                        <output>.2 second per step<output>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <button class="nav-item" type="button" id="generate">Generate</button>
+            </li>
+            <li id="aboutDrop" class="nav-item dropdown">
+                <button onclick="Dropdown(this, 'AboutDropdown')" class="dropbtn">About</button>
+                <div id="AboutDropdown" class="dropdownTab dropdown-content">
+                    <p class="about dropdown-content">This is placeholder text. Don't forget to fill this out.</p>
+                </div>
+            </li>
+        </ul>
+
+    </nav>
+
+    <table id="grid">
+        
+    </table>
 
     <script src='main.js'></script>
 </body>
