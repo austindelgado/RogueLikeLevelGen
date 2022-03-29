@@ -7,7 +7,7 @@ body {
 }
 
 .navbar {
-    width: 5rem;
+    width: 8rem;
     height: 100vh;
     position: fixed;
     background-color: #313447;
@@ -33,10 +33,10 @@ body {
 
 main {
     display: grid;
-    margin-left: 6rem;
+    margin-left: 8rem;
     place-items: center;
     height: 100%;
-    width: calc(100% - 6rem);
+    width: calc(100% - 8rem);
 }
 
 table {
@@ -48,8 +48,7 @@ table {
 
 button {
     font-family: 'Roboto', sans-serif;
-    padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
+    width: 100%;
 }
 
 tbody {
