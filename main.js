@@ -334,7 +334,6 @@ function ClearLevel()
 var timeouts = []; // Used to store timeouts
 function DrawMap()
 {
-    console.log(moves);
     timeoutTime = animationSpeed * 1000; // Scale this based off user input
 
     prevWalker = []
